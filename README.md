@@ -18,8 +18,6 @@
 
 ## 📖 项目介绍
 
-Cineva 基于 [XiaoYunQue（Innate Labs）](https://github.com/Innate-Labs/xiaoyunque) 二次开发，当前主要更新品牌名称与图标，保留原有创作流程。底层目录沿用 `xiaoyunque/`，以保持兼容。
-
 模型服务需要自行配置 API Key，使用成本由所选服务商决定。本仓库不包含本地密钥、会话记录或生成产物。
 
 **Cineva** 是一个面向短视频 / 短剧创作的 AI 导演系统。你只需要给出一句想法、一段梗概，甚至一个模糊的概念，系统就会把它拆解成一条可执行的影视生产流水线，持续产出**可查看、可确认、可修改、可继续生成**的中间资产，最终交付完整成片。
@@ -218,10 +216,6 @@ Cineva 正在向**真·多 Agent 协作**方向演进：
 
 ---
 
-## 🙏 致谢
-
-本项目基于开源项目 [FilmAgent / Video-Claw](https://github.com/HITsz-TMG/FilmAgent)（MIT License）二次开发，在此致谢原作者。
-
 ## 📄 License
 
-采用 [MIT 许可证](./LICENSE)，保留 XiaoYunQue / Innate Labs 与 FilmAgent / Video-Claw 的原始版权声明。
+采用 [MIT 许可证](./LICENSE)。

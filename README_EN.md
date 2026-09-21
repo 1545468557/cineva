@@ -18,8 +18,6 @@
 
 ## 📖 Overview
 
-Cineva is derived from [XiaoYunQue by Innate Labs](https://github.com/Innate-Labs/xiaoyunque). This version primarily updates the product name and icon while retaining the existing creation workflow. The `xiaoyunque/` directory names are kept for compatibility.
-
 Model providers require your own API keys and may charge for usage. Local credentials, sessions and generated outputs are excluded from this repository.
 
 **Cineva** is an AI directing system for short-video / short-drama creation. Give it a single sentence, a synopsis, or even a vague concept, and it decomposes the idea into an executable film-production pipeline — continuously producing **viewable, confirmable, editable, and resumable** intermediate assets, and finally delivering a complete film.
@@ -180,10 +178,6 @@ Cineva is evolving toward true multi-agent collaboration:
 
 ---
 
-## 🙏 Acknowledgements
-
-This project is built on the open-source [FilmAgent / Video-Claw](https://github.com/HITsz-TMG/FilmAgent) (MIT License). Thanks to the original authors.
-
 ## 📄 License
 
-Licensed under [MIT](./LICENSE). Original copyright notices for XiaoYunQue / Innate Labs and FilmAgent / Video-Claw are retained.
+Licensed under [MIT](./LICENSE).
