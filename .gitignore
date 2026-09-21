@@ -1,0 +1,42 @@
+# Local system and editor files
+.DS_Store
+.vscode/
+.idea/
+.claude/
+dev/
+
+# Dependencies, builds and caches
+node_modules/
+.next/
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+*.tsbuildinfo
+coverage/
+
+# Secrets and machine-specific settings
+.env
+.env.*
+!.env.example
+!.env.template
+config.yaml
+*.pem
+*.key
+
+# Local generated content, sessions, uploads and logs
+logs/
+*.log
+temp/
+tmp/
+code/
+code.bak/
+*.db
+*.sqlite
+*.sqlite3
+
+# Local notes unrelated to the published application
+/AI产品Vibe Coding通用前端技术栈手册.md
+/design-qa.md
