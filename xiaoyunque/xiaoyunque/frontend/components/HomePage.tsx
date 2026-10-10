@@ -52,7 +52,10 @@ interface HomePageProps {
   history: HistoryItem[];
 }
 
+const COMPOSER_PLACEHOLDER = '描述你的想法，输入一段故事、一个画面或一句灵感……';
+
 const COMPOSER_HINTS = [
+  COMPOSER_PLACEHOLDER,
   '午后阳光下，一只橘猫慢慢睁开眼',
   '雨夜伦敦，侦探追着远处的煤气灯',
   '水墨山水中，一叶扁舟穿过薄雾',
@@ -409,9 +412,9 @@ export default function HomePage({ onStartProject, onResumeProject, onDeleteSess
           <textarea
             value={idea}
             onChange={e => setIdea(e.target.value)}
-            placeholder={idea ? '' : '描述你的想法，输入一段故事、一个画面或一句灵感……'}
-            aria-label="描述你的想法，输入一段故事、一个画面或一句灵感"
-            className="xyq-prompt-input w-full bg-transparent text-sm text-gray-800 placeholder-gray-400 resize-none outline-none min-h-[100px]"
+            placeholder=""
+            aria-label={COMPOSER_PLACEHOLDER}
+            className="xyq-prompt-input w-full bg-transparent text-sm text-gray-800 resize-none outline-none min-h-[100px]"
             onKeyDown={e => {
               if (e.key === 'Enter' && !e.shiftKey && (idea.trim() || uploadedFile)) {
                 e.preventDefault();
