@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { CheckCircle, Loader2, Save, Settings, XCircle } from 'lucide-react';
+import { CheckCircle, Loader2, Save, XCircle } from 'lucide-react';
 import BrandHeader from '@/components/BrandHeader';
 import { fetchModelGroupsByType, fetchVideoModelGroupsByAbility } from '@/lib/modelRegistry';
 import {
@@ -286,15 +286,12 @@ export default function SettingsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50/50">
+    <div className="xyq-page min-h-screen">
       <BrandHeader />
-      <main className="w-full max-w-6xl mx-auto px-6 pt-10 pb-12">
-        <div className="mb-8 text-center">
-          <div className="inline-flex items-center gap-2 mb-3">
-            <Settings className="w-7 h-7 text-blue-500" />
-            <h1 className="text-2xl font-bold text-gray-800">设置</h1>
-          </div>
-          <p className="text-sm text-gray-500">
+      <main className="w-full max-w-6xl mx-auto px-8 pt-14 pb-12">
+        <div className="xyq-page-hero">
+          <h1>设置</h1>
+          <p>
             修改后端配置并保存到 <span className="font-mono">{formatConfigPath(path)}</span>
           </p>
         </div>
@@ -307,7 +304,7 @@ export default function SettingsPage() {
         ) : (
           <div className="space-y-5">
             {groups.map(group => (
-              <section key={group.title} className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
+              <section key={group.title} className="xyq-panel p-6">
                 <div className="mb-4">
                   <h2 className="text-sm font-semibold text-gray-800">{group.title}</h2>
                   <p className="mt-1 text-xs text-gray-500">{group.description}</p>
@@ -322,7 +319,7 @@ export default function SettingsPage() {
                           <select
                             value={String(Boolean(value))}
                             onChange={event => updateField(field, event.target.value === 'true')}
-                            className="h-10 rounded-lg border border-gray-200 bg-white px-3 text-sm text-gray-700 outline-none focus:border-blue-300"
+                            className="h-10 rounded-lg border border-gray-200 bg-white px-3 text-sm text-gray-700 outline-none focus:border-neutral-900"
                           >
                             <option value="true">true</option>
                             <option value="false">false</option>
@@ -331,7 +328,7 @@ export default function SettingsPage() {
                           <select
                             value={String(value ?? '')}
                             onChange={event => updateField(field, event.target.value)}
-                            className="h-10 rounded-lg border border-gray-200 bg-white px-3 text-sm text-gray-700 outline-none focus:border-blue-300"
+                            className="h-10 rounded-lg border border-gray-200 bg-white px-3 text-sm text-gray-700 outline-none focus:border-neutral-900"
                           >
                             {isProviderOptions(field.options) ? (
                               field.options.map(group => (
@@ -354,14 +351,14 @@ export default function SettingsPage() {
                             onFocus={event => event.currentTarget.select()}
                             onChange={event => updateSecretField(field, event.target.value)}
                             placeholder="输入新密钥覆盖"
-                            className="h-10 rounded-lg border border-gray-200 bg-white px-3 font-mono text-sm text-gray-700 outline-none focus:border-blue-300"
+                            className="h-10 rounded-lg border border-gray-200 bg-white px-3 font-mono text-sm text-gray-700 outline-none focus:border-neutral-900"
                           />
                         ) : (
                           <input
                             type={field.type === 'number' ? 'number' : 'text'}
                             value={String(value ?? '')}
                             onChange={event => updateField(field, event.target.value)}
-                            className="h-10 rounded-lg border border-gray-200 bg-white px-3 text-sm text-gray-700 outline-none focus:border-blue-300"
+                            className="h-10 rounded-lg border border-gray-200 bg-white px-3 text-sm text-gray-700 outline-none focus:border-neutral-900"
                           />
                         )}
                       </label>
@@ -387,7 +384,7 @@ export default function SettingsPage() {
               <button
                 onClick={save}
                 disabled={saving}
-                className="ml-auto flex items-center gap-2 rounded-xl bg-blue-500 px-5 py-2 text-sm font-medium text-white shadow-sm transition-colors hover:bg-blue-600 disabled:cursor-not-allowed disabled:bg-gray-200"
+                className="xyq-pill-dark ml-auto flex items-center gap-2 px-5 py-2 text-sm font-medium disabled:cursor-not-allowed"
               >
                 {saving ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
                 保存配置

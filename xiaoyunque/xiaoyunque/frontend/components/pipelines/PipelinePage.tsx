@@ -5,18 +5,15 @@ import { useSearchParams } from 'next/navigation';
 import {
   ArrowRight,
   CheckCircle,
-  Clapperboard,
   Clock,
   Image as ImageIcon,
   Lightbulb,
   Loader2,
   Play,
   RefreshCw,
-  Repeat2,
   Settings2,
   SlidersHorizontal,
   Upload,
-  UserRound,
   Video,
   Volume2,
   X,
@@ -140,12 +137,6 @@ const STATUS_STYLE: Record<string, string> = {
   failed: 'bg-red-50 text-red-600',
 };
 
-const PIPELINE_TITLE_ICONS = {
-  standard: Clapperboard,
-  action_transfer: Repeat2,
-  digital_human: UserRound,
-};
-
 function SelectField({
   label,
   value,
@@ -163,7 +154,7 @@ function SelectField({
       <select
         value={value}
         onChange={e => onChange(e.target.value)}
-        className="h-10 rounded-lg border border-gray-200 bg-white px-3 text-sm text-gray-700 outline-none focus:border-blue-300"
+        className="h-10 rounded-lg border border-gray-200 bg-white px-3 text-sm text-gray-700 outline-none focus:border-neutral-900"
       >
         {groups.map(group => (
           <optgroup key={group.provider} label={group.label}>
@@ -213,7 +204,7 @@ function TextInput({
         value={value}
         onChange={e => onChange(e.target.value)}
         placeholder={placeholder}
-        className="h-10 rounded-lg border border-gray-200 bg-white px-3 text-sm text-gray-700 outline-none focus:border-blue-300"
+        className="h-10 rounded-lg border border-gray-200 bg-white px-3 text-sm text-gray-700 outline-none focus:border-neutral-900"
       />
     </label>
   );
@@ -264,7 +255,7 @@ function MediaUploadField({
             onChange(e.target.value);
           }}
           placeholder={placeholder}
-          className="h-10 min-w-0 flex-1 rounded-lg border border-gray-200 bg-white px-3 text-sm text-gray-700 outline-none focus:border-blue-300"
+          className="h-10 min-w-0 flex-1 rounded-lg border border-gray-200 bg-white px-3 text-sm text-gray-700 outline-none focus:border-neutral-900"
         />
         <div className="relative flex-shrink-0">
           <input
@@ -280,7 +271,7 @@ function MediaUploadField({
               'h-10 w-10 rounded-lg border flex items-center justify-center transition-colors',
               uploading
                 ? 'border-gray-100 bg-gray-50 text-gray-300'
-                : 'border-gray-200 bg-white text-gray-500 hover:border-blue-200 hover:bg-blue-50 hover:text-blue-600'
+                : 'border-neutral-200 bg-white text-neutral-500 hover:border-neutral-400 hover:bg-neutral-50'
             )}
             title="上传媒体"
           >
@@ -332,7 +323,7 @@ function NumberField({
         max={max}
         value={value}
         onChange={e => onChange(Number(e.target.value))}
-        className="h-10 rounded-lg border border-gray-200 bg-white px-3 text-sm text-gray-700 outline-none focus:border-blue-300"
+        className="h-10 rounded-lg border border-gray-200 bg-white px-3 text-sm text-gray-700 outline-none focus:border-neutral-900"
       />
     </label>
   );
@@ -372,9 +363,9 @@ function isFinalVideoArtifact(item: PipelineArtifact) {
 
 function FinalVideoResult({ item }: { item?: PipelineArtifact }) {
   return (
-    <section className="mb-4 rounded-xl border border-blue-100 bg-blue-50/40 p-3">
+    <section className="xyq-panel mb-4 p-4">
       <div className="mb-2 flex items-center gap-2">
-        <Video className="w-4 h-4 text-blue-600" />
+        <Video className="w-4 h-4 text-neutral-700" />
         <h3 className="text-sm font-semibold text-gray-800">最终视频</h3>
       </div>
       {item ? (
@@ -395,7 +386,7 @@ function TaskResult({ task }: { task: PipelineTask | null }) {
 
   if (!task) {
     return (
-      <div className="bg-white rounded-2xl border border-gray-200 p-5 shadow-sm h-full">
+      <div className="xyq-panel h-full p-5">
         <div className="flex items-center justify-between gap-3 mb-3">
           <div className="flex items-center gap-2 min-w-0">
             <SlidersHorizontal className="w-4 h-4 text-gray-400" />
@@ -404,7 +395,7 @@ function TaskResult({ task }: { task: PipelineTask | null }) {
           <span className="text-xs font-medium text-gray-400">0%</span>
         </div>
         <div className="mb-4 h-1.5 rounded-full bg-gray-100 overflow-hidden">
-          <div className="h-full w-0 rounded-full bg-blue-500" />
+          <div className="h-full w-0 rounded-full bg-neutral-900" />
         </div>
         <div className="h-48 rounded-xl border border-dashed border-gray-200 bg-gray-50 flex items-center justify-center text-sm text-gray-400">
           等待启动
@@ -429,7 +420,7 @@ function TaskResult({ task }: { task: PipelineTask | null }) {
     });
 
   return (
-    <div className="bg-white rounded-2xl border border-gray-200 p-5 shadow-sm h-full">
+    <div className="xyq-panel h-full p-5">
       <div className="flex items-center justify-between gap-3 mb-3">
         <div className="flex items-center gap-2 min-w-0">
           {task.status === 'running' ? (
@@ -453,7 +444,7 @@ function TaskResult({ task }: { task: PipelineTask | null }) {
 
       <div className="mb-4 h-1.5 rounded-full bg-gray-100 overflow-hidden">
         <div
-          className={clsx('h-full rounded-full transition-all', task.status === 'failed' ? 'bg-red-500' : 'bg-blue-500')}
+          className={clsx('h-full rounded-full transition-all', task.status === 'failed' ? 'bg-red-500' : 'bg-neutral-900')}
           style={{ width: `${progress}%` }}
         />
       </div>
@@ -528,7 +519,7 @@ function TemplatePreviewCard({
       onClick={onClick}
       className={clsx(
         'group flex-shrink-0 rounded-lg border bg-white p-1.5 text-left transition-all',
-        selected ? 'border-blue-400 ring-2 ring-blue-100' : 'border-gray-200 hover:border-blue-300 hover:shadow-sm'
+        selected ? 'border-neutral-950 ring-2 ring-neutral-950/10' : 'border-neutral-200 hover:border-neutral-400 hover:shadow-sm'
       )}
       title={template.label}
     >
@@ -545,7 +536,7 @@ function TemplatePreviewCard({
           }}
         />
       </div>
-      <div className="mt-1 max-w-36 truncate text-[10px] font-medium text-gray-500 group-hover:text-blue-600">
+      <div className="mt-1 max-w-36 truncate text-[10px] font-medium text-neutral-500 group-hover:text-neutral-950">
         {template.label}
       </div>
     </button>
@@ -623,14 +614,14 @@ function PipelineHistory({
             key={task.task_id}
             onClick={() => !manageMode && onSelect(task)}
             className={clsx(
-              'group text-left p-4 bg-white rounded-xl border hover:border-blue-300 hover:shadow-sm transition-all',
+              'group text-left p-4 bg-white rounded-2xl border shadow-sm transition-all hover:shadow-md',
               manageMode ? 'cursor-default' : 'cursor-pointer',
-              activeTaskId === task.task_id ? 'border-blue-300 ring-2 ring-blue-50' : 'border-gray-200'
+              activeTaskId === task.task_id ? 'border-neutral-950' : 'border-neutral-200'
             )}
           >
             <div className="flex items-start justify-between gap-3">
               <div className="min-w-0">
-                <div className="text-sm font-medium text-gray-700 group-hover:text-blue-600 transition-colors truncate">
+                <div className="text-sm font-medium text-neutral-800 truncate">
                   {String(taskTitle(task)).slice(0, 48)}
                 </div>
                 <div className="mt-1.5 flex flex-wrap items-center gap-2">
@@ -642,7 +633,7 @@ function PipelineHistory({
                   </span>
                 </div>
                 <div className="mt-2 h-1 rounded-full bg-gray-100 overflow-hidden">
-                  <div className="h-full bg-blue-500 rounded-full" style={{ width: `${task.progress || 0}%` }} />
+                  <div className="h-full rounded-full bg-neutral-900" style={{ width: `${task.progress || 0}%` }} />
                 </div>
               </div>
               {manageMode ? (
@@ -658,7 +649,7 @@ function PipelineHistory({
                   {deleting === task.task_id ? <Loader2 className="w-4 h-4 animate-spin" /> : <X className="w-4 h-4" />}
                 </button>
               ) : (
-                <ArrowRight className="w-4 h-4 text-gray-300 group-hover:text-blue-400 flex-shrink-0 mt-0.5" />
+                <ArrowRight className="w-4 h-4 text-neutral-300 group-hover:text-neutral-900 flex-shrink-0 mt-0.5" />
               )}
             </div>
           </div>
@@ -670,7 +661,6 @@ function PipelineHistory({
 
 export default function PipelinePage({ pipeline, title, subtitle }: PipelinePageProps) {
   const searchParams = useSearchParams();
-  const TitleIcon = PIPELINE_TITLE_ICONS[pipeline];
   const [showSettings, setShowSettings] = useState(false);
   const [running, setRunning] = useState(false);
   const [error, setError] = useState('');
@@ -949,20 +939,17 @@ export default function PipelinePage({ pipeline, title, subtitle }: PipelinePage
   };
 
   return (
-    <div className="min-h-screen bg-gray-50/50 overflow-y-auto">
+    <div className="xyq-page xyq-pipeline min-h-screen overflow-y-auto">
       <BrandHeader />
 
-      <div className="w-full max-w-6xl mx-auto px-6 pt-10 pb-8">
-        <div className="text-center mb-10">
-          <div className="inline-flex items-center gap-2 mb-3">
-            <TitleIcon className="w-7 h-7 text-blue-500" />
-            <h1 className="text-2xl font-bold text-gray-800">{title}</h1>
-          </div>
-          <p className="text-sm text-gray-500">{subtitle}</p>
+      <div className="w-full max-w-6xl mx-auto px-8 pt-14 pb-10">
+        <div className="xyq-page-hero">
+          <h1>{title}</h1>
+          <p>{subtitle}</p>
         </div>
 
         {pipeline === 'standard' && (
-          <section className="mb-5 rounded-2xl border border-gray-200 bg-white p-4 shadow-sm">
+          <section className="xyq-panel mb-6 p-5">
             <div className="flex flex-col gap-3 md:flex-row md:items-center">
               <button
                 type="button"
@@ -970,12 +957,7 @@ export default function PipelinePage({ pipeline, title, subtitle }: PipelinePage
                   if (templateMode) setTemplateMode(false);
                   else enterTemplateMode();
                 }}
-                className={clsx(
-                  'h-10 flex-shrink-0 rounded-xl px-4 text-sm font-medium transition-colors',
-                  templateMode
-                    ? 'bg-gray-900 text-white hover:bg-gray-800'
-                    : 'bg-blue-500 text-white hover:bg-blue-600'
-                )}
+                className="xyq-pill-dark h-10 flex-shrink-0 px-5 text-sm font-medium"
               >
                 {templateMode ? '返回自定义生成模式' : '使用精品模版'}
               </button>
@@ -1005,18 +987,18 @@ export default function PipelinePage({ pipeline, title, subtitle }: PipelinePage
           </section>
         )}
 
-        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1.1fr)_minmax(340px,0.9fr)] gap-5 items-start">
-          <section className="bg-white rounded-2xl shadow-sm border border-gray-200 p-5">
+        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1.1fr)_minmax(340px,0.9fr)] gap-6 items-start">
+          <section className="xyq-panel p-6">
             {pipeline === 'standard' && (
               <div className="space-y-4">
                 {templateMode ? (
                   <div className="space-y-3">
-                    <div className="grid h-10 max-w-sm grid-cols-3 rounded-lg bg-gray-100 p-1 text-sm">
+                    <div className="xyq-segment grid h-10 max-w-sm grid-cols-3 p-1 text-sm">
                       {['9:16', '1:1', '16:9'].map(item => (
                         <button
                           key={item}
                           onClick={() => setRatio(item)}
-                          className={clsx('rounded-md transition-colors', ratio === item ? 'bg-white text-blue-600 shadow-sm' : 'text-gray-500')}
+                          className={clsx('transition-colors', ratio === item ? 'is-on' : 'text-neutral-500')}
                         >
                           {item}
                         </button>
@@ -1043,7 +1025,7 @@ export default function PipelinePage({ pipeline, title, subtitle }: PipelinePage
                         </div>
                       </div>
                     </div>
-                    <div className="grid h-10 max-w-sm grid-cols-2 rounded-lg bg-gray-100 p-1 text-sm">
+                    <div className="xyq-segment grid h-10 max-w-sm grid-cols-2 p-1 text-sm">
                       {[
                         { id: 'image', label: '图片拼接', disabled: false },
                         { id: 'video', label: '动态视频', disabled: Boolean(selectedTemplate && !selectedTemplate.supports_video) },
@@ -1056,7 +1038,7 @@ export default function PipelinePage({ pipeline, title, subtitle }: PipelinePage
                           onClick={() => setTemplateMediaKind(item.id as 'image' | 'video')}
                           className={clsx(
                             'rounded-md transition-colors',
-                            templateMediaKind === item.id ? 'bg-white text-blue-600 shadow-sm' : 'text-gray-500',
+                            templateMediaKind === item.id ? 'is-on' : 'text-neutral-500',
                             item.disabled && 'cursor-not-allowed opacity-40'
                           )}
                         >
@@ -1066,7 +1048,7 @@ export default function PipelinePage({ pipeline, title, subtitle }: PipelinePage
                     </div>
                   </div>
                 ) : (
-                  <div className="grid grid-cols-2 h-10 rounded-lg bg-gray-100 p-1 text-sm max-w-sm">
+                  <div className="xyq-segment grid h-10 max-w-sm grid-cols-2 p-1 text-sm">
                     {[
                       { id: 'image_concat', label: '图片拼接' },
                       { id: 'dynamic_video', label: '动态视频' },
@@ -1074,19 +1056,19 @@ export default function PipelinePage({ pipeline, title, subtitle }: PipelinePage
                       <button
                         key={item.id}
                         onClick={() => setStandardVideoMode(item.id as 'image_concat' | 'dynamic_video')}
-                        className={clsx('rounded-md transition-colors', standardVideoMode === item.id ? 'bg-white text-blue-600 shadow-sm' : 'text-gray-500')}
+                        className={clsx('transition-colors', standardVideoMode === item.id ? 'is-on' : 'text-neutral-500')}
                       >
                         {item.label}
                       </button>
                     ))}
                   </div>
                 )}
-                <div className="rounded-xl border border-yellow-300 bg-yellow-100 px-4 py-3">
-                  <div className="mb-1 flex items-center gap-1.5 text-xs font-semibold text-yellow-900">
+                <div className="xyq-note px-4 py-3">
+                  <div className="mb-1 flex items-center gap-1.5 text-xs font-semibold text-neutral-800">
                     <Lightbulb className="w-3.5 h-3.5" />
                     <span>说明</span>
                   </div>
-                  <p className="text-sm leading-6 text-yellow-950">
+                  <p>
                     {templateMode
                       ? templateMediaKind === 'video'
                         ? '精品模版会先按模版媒体位生成图片，再调用视频模型生成动态媒体，最后逐帧渲染 HTML 模版并合成 TTS 音频。'
@@ -1096,7 +1078,7 @@ export default function PipelinePage({ pipeline, title, subtitle }: PipelinePage
                       : '动态视频会先为每个旁白片段生成图片，再调用视频模型把图片扩展为动态片段，最后合成为完整短片。等待时间更长，通常生成每个视频片段需 1-2 分钟。'}
                   </p>
                 </div>
-                <div className="grid grid-cols-2 h-10 rounded-lg bg-gray-100 p-1 text-sm max-w-sm">
+                <div className="xyq-segment grid h-10 max-w-sm grid-cols-2 p-1 text-sm">
                   {[
                     { id: 'inspiration', label: '创作灵感' },
                     { id: 'copy', label: '完整文案' },
@@ -1104,7 +1086,7 @@ export default function PipelinePage({ pipeline, title, subtitle }: PipelinePage
                     <button
                       key={item.id}
                       onClick={() => setStandardMode(item.id as 'inspiration' | 'copy')}
-                      className={clsx('rounded-md transition-colors', standardMode === item.id ? 'bg-white text-blue-600 shadow-sm' : 'text-gray-500')}
+                      className={clsx('transition-colors', standardMode === item.id ? 'is-on' : 'text-neutral-500')}
                     >
                       {item.label}
                     </button>
@@ -1114,7 +1096,7 @@ export default function PipelinePage({ pipeline, title, subtitle }: PipelinePage
                   value={text}
                   onChange={e => setText(e.target.value)}
                   placeholder={standardMode === 'inspiration' ? '输入主题、观点或故事灵感，系统会先构思成完整旁白...' : '输入完整旁白文案，系统会按句号切分片段并直接进入 TTS...'}
-                  className="w-full min-h-[150px] resize-none rounded-xl border border-gray-200 bg-white px-3 py-3 text-sm text-gray-800 outline-none focus:border-blue-300"
+                  className="xyq-dark-prompt w-full"
                 />
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   <TextInput label="标题" value={titleValue} onChange={setTitleValue} placeholder="可选，留空时由llm生成" />
@@ -1135,7 +1117,7 @@ export default function PipelinePage({ pipeline, title, subtitle }: PipelinePage
                               const value = event.target.value;
                               setTemplateFieldValues(current => ({ ...current, [field.key]: value }));
                             }}
-                            className="h-9 min-w-0 rounded-lg border border-gray-200 bg-white px-3 text-sm text-gray-700 outline-none focus:border-blue-300"
+                            className="h-9 min-w-0 rounded-lg border border-gray-200 bg-white px-3 text-sm text-gray-700 outline-none focus:border-neutral-900"
                           />
                         </label>
                       ))}
@@ -1151,7 +1133,7 @@ export default function PipelinePage({ pipeline, title, subtitle }: PipelinePage
                   value={promptText}
                   onChange={e => setPromptText(e.target.value)}
                   placeholder="描述希望迁移到人物或角色上的动作效果..."
-                  className="w-full min-h-[130px] resize-none rounded-xl border border-gray-200 bg-white px-3 py-3 text-sm text-gray-800 outline-none focus:border-blue-300"
+                  className="xyq-dark-prompt w-full"
                 />
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   <MediaUploadField label="参考图片" value={imagePath} onChange={setImagePath} accept="image/*" placeholder="/path/to/image.png" required />
@@ -1171,7 +1153,7 @@ export default function PipelinePage({ pipeline, title, subtitle }: PipelinePage
                   value={goodsText}
                   onChange={e => setGoodsText(e.target.value)}
                   placeholder="输入口播文案..."
-                  className="w-full min-h-[130px] resize-none rounded-xl border border-gray-200 bg-white px-3 py-3 text-sm text-gray-800 outline-none focus:border-blue-300"
+                  className="xyq-dark-prompt w-full"
                 />
               </div>
             )}
@@ -1180,8 +1162,8 @@ export default function PipelinePage({ pipeline, title, subtitle }: PipelinePage
               <button
                 onClick={() => setShowSettings(!showSettings)}
                 className={clsx(
-                  'flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-medium transition-colors',
-                  showSettings ? 'bg-blue-50 text-blue-600' : 'text-gray-400 hover:text-gray-600 hover:bg-gray-50'
+                  'flex items-center gap-1.5 rounded-full px-3 py-2 text-xs font-medium transition-colors',
+                  showSettings ? 'bg-neutral-900 text-white' : 'text-neutral-500 hover:bg-neutral-100 hover:text-neutral-900'
                 )}
               >
                 <Settings2 className="w-3.5 h-3.5" />
@@ -1200,7 +1182,7 @@ export default function PipelinePage({ pipeline, title, subtitle }: PipelinePage
                     添加标题和字幕
                   </label>
                   {!templateMode && enableSubtitles && (
-                    <div className="grid h-9 grid-cols-2 rounded-lg bg-gray-100 p-1 text-xs">
+                    <div className="xyq-segment grid h-9 grid-cols-2 p-1 text-xs">
                       {[
                         { id: 'postprocess', label: 'PIL 后期叠字' },
                         { id: 'image_model', label: '模型直接生成字幕' },
@@ -1212,8 +1194,8 @@ export default function PipelinePage({ pipeline, title, subtitle }: PipelinePage
                           className={clsx(
                             'rounded-md px-3 font-medium transition-colors',
                             subtitleRenderMode === item.id
-                              ? 'bg-white text-blue-600 shadow-sm'
-                              : 'text-gray-500 hover:text-gray-700'
+                              ? 'is-on'
+                              : 'text-neutral-500 hover:text-neutral-800'
                           )}
                         >
                           {item.label}
@@ -1227,10 +1209,7 @@ export default function PipelinePage({ pipeline, title, subtitle }: PipelinePage
               <button
                 onClick={submit}
                 disabled={!canSubmit || running}
-                className={clsx(
-                  'ml-auto flex items-center gap-2 px-5 py-2 rounded-xl text-sm font-medium transition-colors',
-                  canSubmit && !running ? 'bg-blue-500 text-white hover:bg-blue-600 shadow-sm' : 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                )}
+                className="xyq-pill-dark ml-auto flex items-center gap-2 px-5 py-2 text-sm font-medium"
               >
                 {running ? <Loader2 className="w-4 h-4 animate-spin" /> : <Play className="w-4 h-4" />}
                 启动任务
@@ -1277,7 +1256,7 @@ export default function PipelinePage({ pipeline, title, subtitle }: PipelinePage
                     value={negativePrompt}
                     onChange={e => setNegativePrompt(e.target.value)}
                     placeholder={pipeline === 'standard' ? '会作为所有图像提示词的前缀...' : '负向提示词...'}
-                    className="w-full min-h-[70px] resize-none rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-700 outline-none focus:border-blue-300"
+                    className="w-full min-h-[70px] resize-none rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-700 outline-none focus:border-neutral-900"
                   />
                 </label>
                 {pipeline === 'standard' && (
@@ -1290,8 +1269,8 @@ export default function PipelinePage({ pipeline, title, subtitle }: PipelinePage
                         className={clsx(
                           'h-8 rounded-lg border px-3 text-xs font-medium transition-colors',
                           negativePrompt === preset.prompt
-                            ? 'border-blue-300 bg-blue-50 text-blue-600'
-                            : 'border-gray-200 bg-white text-gray-500 hover:border-blue-200 hover:bg-blue-50 hover:text-blue-600'
+                            ? 'border-neutral-950 bg-neutral-950 text-white'
+                            : 'border-neutral-200 bg-white text-neutral-600 hover:border-neutral-400'
                         )}
                       >
                         {preset.label}

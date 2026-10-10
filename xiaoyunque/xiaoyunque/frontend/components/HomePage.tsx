@@ -52,6 +52,92 @@ interface HomePageProps {
   history: HistoryItem[];
 }
 
+const COMPOSER_PLACEHOLDER = '描述你的想法，输入一段故事、一个画面或一句灵感……';
+
+const COMPOSER_HINTS = [
+  COMPOSER_PLACEHOLDER,
+  '午后阳光下，一只橘猫慢慢睁开眼',
+  '雨夜伦敦，侦探追着远处的煤气灯',
+  '水墨山水中，一叶扁舟穿过薄雾',
+  '火星荒原上，宇航员留下第一串脚印',
+  '竹林深处，两位剑客静静对峙',
+  '霓虹街头，舞者在雨里轻轻转身',
+];
+
+function RotatingPromptHint({
+  active,
+  fieldRef,
+}: {
+  active: boolean;
+  fieldRef: React.RefObject<HTMLElement | null>;
+}) {
+  const activeRef = useRef(active);
+  activeRef.current = active;
+  const [index, setIndex] = useState(0);
+  const [leaving, setLeaving] = useState(false);
+
+  useEffect(() => {
+    if (!active) {
+      setLeaving(false);
+      return;
+    }
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduceMotion) return;
+
+    let dwellTimer = 0;
+    let fadeTimer = 0;
+    let stopped = false;
+
+    const interacting = () => {
+      const field = fieldRef.current;
+      if (!activeRef.current) return true;
+      if (!field) return false;
+      return field.matches(':hover') || field.contains(document.activeElement);
+    };
+
+    const clearTimers = () => {
+      window.clearTimeout(dwellTimer);
+      window.clearTimeout(fadeTimer);
+    };
+
+    const schedule = () => {
+      clearTimers();
+      dwellTimer = window.setTimeout(() => {
+        if (stopped) return;
+        if (interacting()) {
+          setLeaving(false);
+          schedule();
+          return;
+        }
+        setLeaving(true);
+        fadeTimer = window.setTimeout(() => {
+          if (stopped) return;
+          if (interacting()) {
+            setLeaving(false);
+            schedule();
+            return;
+          }
+          setIndex(current => (current + 1) % COMPOSER_HINTS.length);
+          setLeaving(false);
+          schedule();
+        }, 280);
+      }, 3200);
+    };
+
+    schedule();
+    return () => {
+      stopped = true;
+      clearTimers();
+    };
+  }, [active, fieldRef]);
+
+  return (
+    <div className={clsx('xyq-rotating-hint', leaving && 'is-leaving')} aria-hidden="true">
+      <span key={index}>{COMPOSER_HINTS[index]}</span>
+    </div>
+  );
+}
+
 const INSPIRATION_IMAGES = [
   '/ui/inspiration-space.png',
   '/ui/inspiration-ink.png',
@@ -95,6 +181,9 @@ export default function HomePage({ onStartProject, onResumeProject, onDeleteSess
   const [webSearch, setWebSearch] = useState(false);
   const [episodes, setEpisodes] = useState(4);
   const [showEpisodesPanel, setShowEpisodesPanel] = useState(false);
+  const [hintHovered, setHintHovered] = useState(false);
+  const [hintFocused, setHintFocused] = useState(false);
+  const promptFieldRef = useRef<HTMLDivElement>(null);
 
   // 上传相关状态
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -301,20 +390,31 @@ export default function HomePage({ onStartProject, onResumeProject, onDeleteSess
         {/* 标题 */}
         <div className="xyq-hero-title text-center mb-10">
           <div className="inline-flex items-center gap-2 mb-3">
-            <h1 className="text-2xl font-medium text-white">Hi，和 Cineva 一起聊聊创作想法</h1>
+            <h1 className="text-neutral-950">Hi，和 Cineva 一起聊聊创作想法</h1>
           </div>
-          <p className="text-sm text-white/75">
+          <p className="text-neutral-500">
             从一句灵感开始，让 AI 陪你完成整部短片
           </p>
         </div>
 
         {/* 输入区域 */}
+        <div className="xyq-composer-glow">
         <div className="xyq-composer bg-white rounded-2xl shadow-sm border border-gray-200 p-5 mb-6">
+          <div
+            ref={promptFieldRef}
+            className="xyq-prompt-field"
+            data-hint-paused={hintHovered || hintFocused ? 'true' : 'false'}
+            onPointerEnter={() => setHintHovered(true)}
+            onPointerLeave={() => setHintHovered(false)}
+            onFocus={() => setHintFocused(true)}
+            onBlur={() => setHintFocused(false)}
+          >
           <textarea
             value={idea}
             onChange={e => setIdea(e.target.value)}
-            placeholder="描述你的想法，输入一段故事、一个画面或一句灵感……"
-            className="xyq-prompt-input w-full bg-transparent text-sm text-gray-800 placeholder-gray-400 resize-none outline-none min-h-[100px]"
+            placeholder=""
+            aria-label={COMPOSER_PLACEHOLDER}
+            className="xyq-prompt-input w-full bg-transparent text-sm text-gray-800 resize-none outline-none min-h-[100px]"
             onKeyDown={e => {
               if (e.key === 'Enter' && !e.shiftKey && (idea.trim() || uploadedFile)) {
                 e.preventDefault();
@@ -322,6 +422,13 @@ export default function HomePage({ onStartProject, onResumeProject, onDeleteSess
               }
             }}
           />
+          {!idea && (
+            <RotatingPromptHint
+              active={!hintHovered && !hintFocused}
+              fieldRef={promptFieldRef}
+            />
+          )}
+          </div>
 
           <div className="xyq-composer-toolbar flex items-center justify-between mt-3 pt-3 border-t border-gray-100">
             <div className="flex items-center gap-3">
@@ -665,6 +772,20 @@ export default function HomePage({ onStartProject, onResumeProject, onDeleteSess
             </div>
           )}
         </div>
+        </div>
+
+        <div className="xyq-suggest-row">
+          {PROMPT_EXAMPLES.map(ex => (
+            <button
+              key={ex.title}
+              type="button"
+              className="xyq-suggest-pill"
+              onClick={() => handleExampleClick(ex.text)}
+            >
+              {ex.title}
+            </button>
+          ))}
+        </div>
 
         {/* 示例卡片 */}
         <div className="xyq-inspiration mb-10">
@@ -683,10 +804,10 @@ export default function HomePage({ onStartProject, onResumeProject, onDeleteSess
                   style={{ backgroundImage: `url(${INSPIRATION_IMAGES[idx]})` }}
                 />
                 <div className="xyq-inspiration-copy">
-                  <div className="text-sm font-medium text-white transition-colors mb-1">
+                  <div className="text-sm font-medium text-neutral-950 transition-colors mb-1">
                     {ex.title}
                   </div>
-                  <div className="text-xs text-white/70 line-clamp-2">
+                  <div className="text-xs text-neutral-500 line-clamp-2">
                     {ex.description}
                   </div>
                 </div>

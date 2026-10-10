@@ -7,12 +7,17 @@ import clsx from 'clsx';
 import { useEffect, useState, type CSSProperties } from 'react';
 import { clearTempCache, fetchPipelineTasks, fetchSandboxTasks, fetchSessions, type PipelineTask, type SandboxTask } from '@/lib/workflowApi';
 
-const NAV_ITEMS = [
-  { href: '/', label: 'Cineva', icon: Home },
-  { href: '/sandbox', label: '临时工作台', icon: Hexagon },
-  { href: '/pipelines/standard', label: '文艺短视频', icon: Clapperboard },
-  { href: '/pipelines/action-transfer', label: '动作迁移', icon: Repeat2 },
-  { href: '/pipelines/digital-human', label: '数字人口播', icon: UserRound },
+const NAV_GROUPS = [
+  { label: '首页', items: [{ href: '/', label: 'Cineva', icon: Home }] },
+  { label: '工具', items: [{ href: '/sandbox', label: '临时工作台', icon: Hexagon }] },
+  {
+    label: '创作',
+    items: [
+      { href: '/pipelines/standard', label: '文艺短视频', icon: Clapperboard },
+      { href: '/pipelines/action-transfer', label: '动作迁移', icon: Repeat2 },
+      { href: '/pipelines/digital-human', label: '数字人口播', icon: UserRound },
+    ],
+  },
 ];
 
 const SETTINGS_ITEM = { href: '/settings', label: '设置', icon: Settings };
@@ -200,8 +205,8 @@ function TaskPanel({
                   type="button"
                   onClick={() => onTaskClick(task)}
                   className={clsx(
-                    'xyq-task-item w-full rounded-lg border px-2.5 py-2 text-left transition-colors',
-                    active ? 'border-blue-100 bg-blue-50/60' : 'border-gray-100 bg-white hover:border-blue-200 hover:bg-blue-50/40'
+                    'xyq-task-item w-full rounded-xl border px-2.5 py-2 text-left transition-colors',
+                    active ? 'is-active border-transparent bg-neutral-100' : 'border-transparent bg-transparent hover:bg-neutral-100'
                   )}
                 >
                   <div className="flex items-center gap-2">
@@ -214,8 +219,8 @@ function TaskPanel({
                   </div>
                   <div className="mt-1 flex items-center gap-2">
                     <span className="truncate text-[10px] text-gray-400">{task.scope}</span>
-                    <div className="h-1 min-w-10 flex-1 overflow-hidden rounded-full bg-gray-100">
-                      <div className="h-full rounded-full bg-blue-500" style={{ width: `${task.progress || 0}%` }} />
+                    <div className="h-1 min-w-10 flex-1 overflow-hidden rounded-full bg-neutral-200">
+                      <div className="h-full rounded-full bg-neutral-900" style={{ width: `${task.progress || 0}%` }} />
                     </div>
                   </div>
                 </button>
@@ -335,7 +340,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
   return (
     <div
       className="xyq-shell min-h-screen bg-gray-50 text-gray-800"
-      style={{ '--app-sidebar-width': open ? '15.5rem' : '0px' } as CSSProperties}
+      style={{ '--app-sidebar-width': open ? '17.25rem' : '0px' } as CSSProperties}
     >
       <aside
         className={clsx(
@@ -352,25 +357,30 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
             </div>
           </div>
           <nav className="xyq-sidebar-nav min-h-0 flex-1 overflow-y-auto p-3 space-y-1">
-            {NAV_ITEMS.map(item => {
-              const Icon = item.icon;
-              const active = item.href === '/' ? pathname === '/' : pathname.startsWith(item.href);
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={clsx(
-                    'xyq-sidebar-link flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors',
-                    active
-                      ? 'bg-blue-50 text-blue-600'
-                      : 'text-gray-500 hover:bg-gray-50 hover:text-gray-800'
-                  )}
-                >
-                  <Icon className="w-4 h-4 flex-shrink-0" />
-                  <span className="truncate">{item.label}</span>
-                </Link>
-              );
-            })}
+            {NAV_GROUPS.map(group => (
+              <div key={group.label} className="xyq-nav-group">
+                <div className="xyq-nav-label">{group.label}</div>
+                {group.items.map(item => {
+                  const Icon = item.icon;
+                  const active = item.href === '/' ? pathname === '/' : pathname.startsWith(item.href);
+                  return (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className={clsx(
+                        'xyq-sidebar-link flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors',
+                        active
+                          ? 'is-active'
+                          : 'text-zinc-400 hover:bg-white/5 hover:text-white'
+                      )}
+                    >
+                      <Icon className="w-4 h-4 flex-shrink-0" />
+                      <span className="truncate">{item.label}</span>
+                    </Link>
+                  );
+                })}
+              </div>
+            ))}
           </nav>
           <SidebarTaskPanels currentPath={pathname} />
           <div className="xyq-sidebar-footer relative border-t border-gray-100 p-3">
@@ -387,7 +397,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
                           setSettingsMenuOpen(false);
                           router.push(SETTINGS_ITEM.href);
                         }}
-                        className="flex h-10 w-full items-center gap-2 rounded-lg px-3 text-left text-sm font-medium text-gray-600 hover:bg-blue-50 hover:text-blue-600"
+                        className="flex h-10 w-full items-center gap-2 rounded-lg px-3 text-left text-sm font-medium text-neutral-700 hover:bg-neutral-100 hover:text-neutral-950"
                       >
                         <Settings className="h-4 w-4" />
                         修改配置
@@ -409,8 +419,8 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
                   className={clsx(
                     'flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors',
                     active || settingsMenuOpen
-                      ? 'bg-blue-50 text-blue-600'
-                      : 'text-gray-500 hover:bg-gray-50 hover:text-gray-800'
+                      ? 'is-active bg-neutral-100 text-neutral-950'
+                      : 'text-neutral-500 hover:bg-neutral-100 hover:text-neutral-950'
                   )}
                 >
                   <Icon className="w-4 h-4 flex-shrink-0" />

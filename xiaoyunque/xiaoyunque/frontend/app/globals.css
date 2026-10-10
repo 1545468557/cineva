@@ -1,18 +1,26 @@
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/600.css";
+@import "@fontsource/inter/700.css";
 @import "tailwindcss";
 
 :root {
     /* Primitive tokens: only this file should reference these directly. */
     --color-white: #ffffff;
-    --color-gray-25: #fcfcfc;
+    --color-gray-25: #f6f6f7;
     --color-gray-50: #fafafa;
-    --color-gray-100: #f8f8f8;
-    --color-gray-175: #f3f3f3;
-    --color-gray-200: #eeeeee;
-    --color-gray-300: #d1d5db;
-    --color-gray-450: #737373;
-    --color-gray-500: #999999;
-    --color-gray-600: #666666;
-    --color-black-soft: #191919;
+    --color-gray-100: #f6f6f6;
+    --color-gray-175: #f1f1f1;
+    --color-gray-200: #ececec;
+    --color-gray-300: #d6d6d6;
+    --color-gray-450: #8a8a8a;
+    --color-gray-500: #a3a3a3;
+    --color-gray-600: #6a6a6a;
+    --color-black-soft: #111111;
+    --color-composer: #111111;
+    --color-composer-line: rgba(255, 255, 255, 0.1);
+    --color-composer-muted: rgba(255, 255, 255, 0.62);
+    --color-composer-faint: rgba(255, 255, 255, 0.38);
     --color-black-a4: rgba(25, 25, 25, 0.04);
     --color-black-a6: rgba(25, 25, 25, 0.06);
     --color-black-a8: rgba(25, 25, 25, 0.08);
@@ -24,45 +32,47 @@
     --color-red-400: #f76560;
     --color-red-700: #cb272d;
     --color-red-a10: rgba(245, 63, 63, 0.1);
-    --radius-6: 6px;
-    --radius-8: 8px;
-    --radius-12: 12px;
-    --radius-16: 16px;
-    --radius-20: 20px;
+    --radius-6: 8px;
+    --radius-8: 12px;
+    --radius-12: 16px;
+    --radius-16: 22px;
+    --radius-20: 28px;
     --radius-pill: 9999px;
 
-    /* Semantic tokens used by the XiaoYunQue application surfaces. */
-    --background: var(--color-gray-25);
-    --foreground: var(--color-black-soft);
-    --font-app: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", system-ui, "Segoe UI", "Microsoft YaHei", sans-serif;
-    --lp-canvas-app: var(--color-gray-25);
-    --lp-surface: var(--color-white);
-    --lp-surface-subtle: var(--color-gray-100);
-    --lp-surface-soft: var(--color-gray-175);
-    --lp-text-strong: var(--color-black-soft);
-    --lp-text-default: var(--color-black-soft);
-    --lp-text-inverse: var(--color-white);
-    --lp-text-muted: var(--color-gray-600);
-    --lp-text-subtle: var(--color-gray-450);
-    --lp-text-disabled: var(--color-gray-500);
-    --lp-action-primary: var(--color-black-soft);
-    --lp-accent: var(--lp-action-primary);
-    --lp-accent-soft: var(--color-black-a6);
+    /* Semantic tokens: near-black Director Mode canvas. */
+    --background: #070709;
+    --foreground: #f4f4f5;
+    --font-app: Inter, "SF Pro Display", "Avenir Next", "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", "Microsoft YaHei", system-ui, sans-serif;
+    --lp-canvas-app: #070709;
+    --lp-surface: #121216;
+    --lp-surface-subtle: #1a1a21;
+    --lp-surface-soft: #23232c;
+    --lp-text-strong: #ffffff;
+    --lp-text-default: #e4e4e7;
+    --lp-text-inverse: #09090b;
+    --lp-text-muted: #a1a1aa;
+    --lp-text-subtle: #8b8b96;
+    --lp-text-disabled: #5c5c66;
+    --lp-action-primary: #f4f4f5;
+    --lp-accent: #e879f9;
+    --lp-accent-soft: rgba(232, 121, 249, 0.16);
     --lp-error: var(--color-red-500);
     --lp-error-hover: var(--color-red-400);
     --lp-error-active: var(--color-red-700);
     --lp-error-soft: var(--color-red-a10);
-    --lp-border-subtle: var(--color-gray-200);
-    --lp-border-divider: var(--color-gray-200);
-    --lp-border-strong: var(--color-gray-300);
-    --lp-surface-hover: var(--color-black-a4);
-    --lp-surface-active: var(--color-black-a6);
-    --lp-surface-strong: var(--color-black-a10);
-    --lp-border-medium: var(--color-black-a15);
-    --lp-shadow-raised: 0 1px 2px var(--color-black-a8);
-    --lp-shadow-card-hover: 0 8px 20px var(--color-black-a8);
-    --lp-shadow-popover: 0 8px 24px var(--color-shadow-black-a8);
-    --lp-shadow-modal: 0 20px 40px var(--color-shadow-black-a8);
+    --lp-border-subtle: rgba(255, 255, 255, 0.08);
+    --lp-border-divider: rgba(255, 255, 255, 0.08);
+    --lp-border-strong: rgba(255, 255, 255, 0.16);
+    --lp-surface-hover: rgba(255, 255, 255, 0.06);
+    --lp-surface-active: rgba(255, 255, 255, 0.1);
+    --lp-surface-strong: rgba(255, 255, 255, 0.14);
+    --lp-border-medium: rgba(255, 255, 255, 0.18);
+    --lp-shadow-raised: 0 1px 2px rgba(0, 0, 0, 0.04);
+    --lp-shadow-card: 0 1px 2px rgba(0, 0, 0, 0.04), 0 18px 40px rgba(0, 0, 0, 0.05);
+    --lp-shadow-card-hover: 0 18px 44px rgba(0, 0, 0, 0.1);
+    --lp-shadow-composer: 0 24px 60px rgba(0, 0, 0, 0.14);
+    --lp-shadow-popover: 0 16px 40px rgba(0, 0, 0, 0.12);
+    --lp-shadow-modal: 0 24px 64px rgba(0, 0, 0, 0.18);
     --lp-scrim-modal: var(--color-scrim-black-a50);
     --lp-radius-tag: var(--radius-6);
     --lp-radius-compact: var(--radius-8);
@@ -133,15 +143,15 @@ body {
     height: auto;
     overflow: hidden;
     border: 0 !important;
-    border-right: 1px solid var(--lp-border-subtle) !important;
+    border-right: 1px solid transparent !important;
     border-radius: 0;
     background: var(--lp-surface) !important;
     box-shadow: none !important;
 }
 
 .xyq-sidebar-brand {
-    height: 72px !important;
-    padding-inline: 24px !important;
+    height: 84px !important;
+    padding-inline: 22px !important;
     border-bottom-color: transparent !important;
 }
 
@@ -153,22 +163,22 @@ body {
 
 .xyq-sidebar-brand span {
     color: var(--lp-text-strong) !important;
-    font-size: 16px;
-    font-weight: 600;
-    letter-spacing: -0.01em;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.045em;
 }
 
 .xyq-sidebar-nav {
-    padding: 8px 12px 16px !important;
+    padding: 4px 14px 20px !important;
 }
 
 .xyq-sidebar-link {
     min-height: 44px;
-    padding-inline: 12px !important;
-    border-radius: var(--lp-radius-control) !important;
+    padding-inline: 14px !important;
+    border-radius: var(--lp-radius-pill) !important;
     color: var(--lp-text-muted) !important;
     font-size: 14px;
-    font-weight: 400 !important;
+    font-weight: 500 !important;
 }
 
 .xyq-sidebar-link:hover {
@@ -176,10 +186,11 @@ body {
     color: var(--lp-text-strong) !important;
 }
 
+.xyq-sidebar-link.is-active,
 .xyq-sidebar-link.bg-blue-50 {
-    background: var(--lp-surface-soft) !important;
+    background: var(--lp-surface-subtle) !important;
     color: var(--lp-text-strong) !important;
-    font-weight: 500 !important;
+    font-weight: 600 !important;
 }
 
 .xyq-task-panel {
@@ -211,8 +222,9 @@ body {
     background: var(--lp-surface-hover) !important;
 }
 
-.xyq-task-panel .bg-blue-500 {
-    background: var(--lp-accent) !important;
+.xyq-task-panel .bg-blue-500,
+.xyq-task-panel .bg-neutral-900 {
+    background: var(--lp-text-strong) !important;
 }
 
 .xyq-task-panel .text-blue-600 {
@@ -226,9 +238,9 @@ body {
 
 .xyq-sidebar-footer > button {
     min-height: 44px;
-    border-radius: var(--lp-radius-control) !important;
+    border-radius: var(--lp-radius-pill) !important;
     color: var(--lp-text-muted) !important;
-    font-weight: 400 !important;
+    font-weight: 500 !important;
 }
 
 .xyq-sidebar-footer > button:hover {
@@ -236,10 +248,11 @@ body {
     color: var(--lp-text-strong) !important;
 }
 
+.xyq-sidebar-footer > button.is-active,
 .xyq-sidebar-footer > button.bg-blue-50 {
-    background: var(--lp-surface-soft) !important;
+    background: var(--lp-surface-subtle) !important;
     color: var(--lp-text-strong) !important;
-    font-weight: 500 !important;
+    font-weight: 600 !important;
 }
 
 .xyq-settings-menu {
@@ -290,11 +303,18 @@ body {
     top: 0;
     right: 0;
     left: var(--app-sidebar-width);
+    height: 64px;
     border: 0;
-    border-bottom: 1px solid var(--lp-border-divider);
+    border-bottom: 1px solid rgba(17, 17, 17, 0.06);
     border-radius: 0;
-    background: var(--lp-surface);
+    background: rgba(255, 255, 255, 0.86);
+    backdrop-filter: blur(18px);
     box-shadow: none;
+}
+
+.xyq-brandbar,
+.xyq-brandbar + div {
+    display: none !important;
 }
 
 .xyq-topbar-home,
@@ -310,68 +330,78 @@ body {
 }
 
 .xyq-home-main {
-    max-width: 1040px !important;
-    padding: 72px 32px 40px !important;
+    max-width: 1080px !important;
+    padding: 88px 40px 48px !important;
 }
 
 .xyq-hero-title {
-    margin-bottom: 32px !important;
-    text-align: left !important;
+    max-width: 820px;
+    margin-right: auto !important;
+    margin-bottom: 28px !important;
+    margin-left: auto !important;
+    text-align: center !important;
 }
 
 .xyq-hero-title > div {
-    margin-bottom: 8px !important;
+    display: flex !important;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 10px !important;
 }
 
 .xyq-hero-title h1 {
     color: var(--lp-text-strong) !important;
-    font-size: 32px !important;
+    font-size: 44px !important;
     font-weight: 600 !important;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
+    line-height: 1.08;
+    letter-spacing: -0.04em;
 }
 
 .xyq-hero-title p {
     color: var(--lp-text-muted) !important;
-    font-size: 14px !important;
+    font-size: 16px !important;
     font-weight: 400;
     line-height: 1.5;
 }
 
 .xyq-composer {
-    min-height: 188px;
-    margin-bottom: 48px !important;
-    padding: 20px !important;
-    border: 1px solid var(--lp-border-subtle) !important;
-    border-radius: var(--lp-radius-card) !important;
-    background: var(--lp-surface) !important;
-    box-shadow: none !important;
-    transition: border-color 120ms ease;
+    min-height: 196px;
+    max-width: 820px;
+    margin-right: auto !important;
+    margin-bottom: 56px !important;
+    margin-left: auto !important;
+    padding: 22px 22px 16px !important;
+    border: 1px solid rgba(17, 17, 17, 0.08) !important;
+    border-radius: 28px !important;
+    background: var(--color-white) !important;
+    color: var(--lp-text-default);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 18px 50px rgba(0, 0, 0, 0.06) !important;
 }
 
 .xyq-composer:focus-within {
-    border-color: var(--lp-border-strong) !important;
+    border-color: rgba(17, 17, 17, 0.16) !important;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 22px 56px rgba(0, 0, 0, 0.08) !important;
 }
 
 .xyq-prompt-input {
-    min-height: 88px !important;
-    padding: 0;
-    color: var(--lp-text-default) !important;
+    min-height: 96px !important;
+    padding: 6px 4px 0 !important;
+    color: var(--lp-text-strong) !important;
     font-family: var(--font-app);
-    font-size: 16px !important;
+    font-size: 17px !important;
     font-weight: 400;
-    line-height: 1.6;
+    line-height: 1.55;
 }
 
 .xyq-prompt-input::placeholder {
-    color: var(--lp-text-subtle) !important;
+    color: #a3a3a3 !important;
 }
 
 .xyq-composer-toolbar {
     gap: 16px;
-    margin-top: 12px !important;
+    margin-top: 8px !important;
     padding-top: 12px !important;
-    border-top: 1px solid var(--lp-border-divider) !important;
+    border-top: 1px solid #f0f0f0 !important;
 }
 
 .xyq-composer-toolbar > div {
@@ -379,26 +409,25 @@ body {
 }
 
 .xyq-tool-button {
-    min-height: 32px;
+    min-height: 34px;
     padding: 6px 12px !important;
-    border: 1px solid var(--lp-border-subtle);
+    border: 0;
     border-radius: var(--lp-radius-pill) !important;
-    background: var(--lp-surface) !important;
-    color: var(--lp-text-muted) !important;
-    font-size: 12px !important;
-    font-weight: 400 !important;
+    background: #f3f3f4 !important;
+    color: #3a3a3a !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
 }
 
 .xyq-tool-button:hover {
-    border-color: var(--lp-border-strong);
-    background: var(--lp-surface-hover) !important;
+    background: #e9e9ea !important;
     color: var(--lp-text-strong) !important;
 }
 
-.xyq-tool-button.bg-blue-50 {
-    border-color: var(--lp-action-primary);
-    background: var(--lp-action-primary) !important;
-    color: var(--lp-text-inverse) !important;
+.xyq-tool-button.bg-blue-50,
+.xyq-tool-button.is-on {
+    background: var(--lp-text-strong) !important;
+    color: var(--color-white) !important;
 }
 
 .xyq-episodes-popover {
@@ -419,63 +448,81 @@ body {
 
 .xyq-upload-button,
 .xyq-action-secondary,
-.xyq-action-primary {
+.xyq-action-primary,
+.xyq-pill-dark {
     min-height: 40px;
     padding-inline: 18px !important;
-    border-radius: var(--lp-radius-control) !important;
+    border-radius: var(--lp-radius-pill) !important;
     font-size: 14px !important;
     font-weight: 600 !important;
     box-shadow: none !important;
 }
 
-.xyq-upload-button {
-    border: 1px solid var(--lp-border-subtle) !important;
-    background: var(--lp-surface) !important;
-    color: var(--lp-text-default) !important;
-    font-weight: 400 !important;
+.xyq-upload-button.bg-blue-50 {
+    border-color: transparent !important;
+    background: var(--lp-text-strong) !important;
+    color: var(--color-white) !important;
 }
 
-.xyq-upload-button:hover:not(:disabled) {
-    border-color: var(--lp-border-strong) !important;
-    background: var(--lp-surface-hover) !important;
-}
-
+.xyq-upload-button,
 .xyq-action-secondary:not(:disabled) {
-    border: 1px solid var(--lp-border-subtle) !important;
-    background: var(--lp-surface) !important;
-    color: var(--lp-text-default) !important;
+    border: 1px solid #e6e6e6 !important;
+    background: var(--color-white) !important;
+    color: var(--lp-text-strong) !important;
+    font-weight: 500 !important;
 }
 
+.xyq-upload-button:hover:not(:disabled),
 .xyq-action-secondary:hover:not(:disabled) {
-    border-color: var(--lp-border-strong) !important;
-    background: var(--lp-surface-hover) !important;
+    border-color: #cfcfcf !important;
+    background: #fafafa !important;
 }
 
-.xyq-action-primary:not(:disabled) {
+.xyq-action-primary:not(:disabled),
+.xyq-pill-dark:not(:disabled) {
     min-width: 104px;
-    border: 1px solid var(--lp-action-primary) !important;
-    background: var(--lp-action-primary) !important;
-    color: var(--lp-text-inverse) !important;
+    border: 0 !important;
+    background: var(--lp-text-strong) !important;
+    color: var(--color-white) !important;
 }
 
-.xyq-action-primary:hover:not(:disabled) {
-    opacity: 0.86;
+.xyq-action-primary:hover:not(:disabled),
+.xyq-pill-dark:hover:not(:disabled) {
+    background: #2a2a2a !important;
 }
 
 .xyq-upload-button:disabled,
 .xyq-action-secondary:disabled,
-.xyq-action-primary:disabled {
+.xyq-action-primary:disabled,
+.xyq-pill-dark:disabled {
     border-color: transparent !important;
-    background: var(--lp-surface-soft) !important;
+    background: #f1f1f2 !important;
+    color: #b0b0b0 !important;
+    opacity: 1;
+}
+
+.xyq-page .xyq-pill-dark:not(:disabled),
+.xyq-pipeline .xyq-pill-dark:not(:disabled) {
+    background: var(--color-black-soft) !important;
+    color: var(--color-white) !important;
+}
+
+.xyq-page .xyq-pill-dark:hover:not(:disabled),
+.xyq-pipeline .xyq-pill-dark:hover:not(:disabled) {
+    background: #2a2a2a !important;
+}
+
+.xyq-page .xyq-pill-dark:disabled,
+.xyq-pipeline .xyq-pill-dark:disabled {
+    background: var(--lp-surface-subtle) !important;
     color: var(--lp-text-disabled) !important;
-    opacity: var(--lp-opacity-disabled);
 }
 
 .xyq-generation-panel {
-    padding: 20px !important;
-    border: 1px solid var(--lp-border-subtle);
-    border-radius: var(--lp-radius-card) !important;
-    background: var(--lp-surface-subtle) !important;
+    padding: 18px !important;
+    border: 0;
+    border-radius: 20px !important;
+    background: #f6f6f7 !important;
     color: var(--lp-text-default);
 }
 
@@ -483,34 +530,34 @@ body {
 .xyq-generation-panel > div > div > span {
     color: var(--lp-text-muted) !important;
     font-size: 12px !important;
-    font-weight: 400 !important;
+    font-weight: 500 !important;
 }
 
 .xyq-generation-panel select {
     min-height: 40px;
     padding: 8px 12px !important;
-    border: 1px solid var(--lp-border-subtle) !important;
-    border-radius: var(--lp-radius-control) !important;
-    background: var(--lp-surface) !important;
-    color: var(--lp-text-default) !important;
+    border: 1px solid #e7e7e7 !important;
+    border-radius: 14px !important;
+    background: var(--color-white) !important;
+    color: var(--lp-text-strong) !important;
     font-family: var(--font-app);
     font-size: 14px;
 }
 
 .xyq-generation-panel select:focus {
-    border-color: var(--lp-border-strong) !important;
+    border-color: var(--lp-text-strong) !important;
 }
 
 .xyq-generation-panel button {
-    border-color: var(--lp-border-subtle) !important;
-    border-radius: var(--lp-radius-control) !important;
-    background: var(--lp-surface) !important;
+    border-color: #e7e7e7 !important;
+    border-radius: 14px !important;
+    background: var(--color-white) !important;
     color: var(--lp-text-default) !important;
 }
 
 .xyq-generation-panel button.border-indigo-500 {
-    border-color: var(--lp-accent) !important;
-    background: var(--lp-accent-soft) !important;
+    border-color: var(--lp-text-strong) !important;
+    background: #f3f3f4 !important;
 }
 
 .xyq-inspiration {
@@ -518,17 +565,17 @@ body {
 }
 
 .xyq-inspiration h3 {
-    margin-bottom: 16px !important;
+    margin-bottom: 18px !important;
     color: var(--lp-text-strong) !important;
-    font-size: 20px !important;
-    font-weight: 500 !important;
-    line-height: 1.3;
-    letter-spacing: -0.01em;
+    font-size: 28px !important;
+    font-weight: 600 !important;
+    line-height: 1.15;
+    letter-spacing: -0.035em;
 }
 
 .xyq-inspiration-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 16px !important;
+    gap: 18px !important;
 }
 
 .xyq-inspiration-card {
@@ -543,9 +590,13 @@ body {
     transition: transform 150ms ease, border-color 150ms ease, box-shadow 150ms ease;
 }
 
+.xyq-inspiration-card {
+    box-shadow: var(--lp-shadow-raised) !important;
+}
+
 .xyq-inspiration-card:hover {
-    transform: translateY(-2px);
-    border-color: var(--lp-border-strong) !important;
+    transform: translateY(-3px);
+    border-color: transparent !important;
     box-shadow: var(--lp-shadow-card-hover) !important;
 }
 
@@ -556,29 +607,44 @@ body {
     background-size: cover;
 }
 
+.xyq-inspiration-media {
+    aspect-ratio: 16 / 10;
+}
+
 .xyq-inspiration-copy {
-    padding: 16px;
-    background: var(--lp-surface);
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 48px 16px 14px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.78), rgba(0, 0, 0, 0));
 }
 
 .xyq-inspiration-copy > div:first-child {
-    margin-bottom: 4px !important;
-    color: var(--lp-text-strong) !important;
-    font-size: 14px !important;
-    font-weight: 500 !important;
-    line-height: 1.5;
+    margin-bottom: 2px !important;
+    color: #ffffff !important;
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    line-height: 1.4;
 }
 
 .xyq-inspiration-copy > div:last-child {
-    color: var(--lp-text-muted) !important;
+    color: rgba(255, 255, 255, 0.78) !important;
     font-size: 12px !important;
     font-weight: 400;
-    line-height: 1.5;
+    line-height: 1.45;
 }
 
 .xyq-history {
     max-width: 1040px !important;
     padding-inline: 32px !important;
+}
+
+.xyq-history h3 {
+    color: var(--lp-text-strong) !important;
+    font-size: 22px !important;
+    font-weight: 600 !important;
+    letter-spacing: -0.03em;
 }
 
 .xyq-history-card {
@@ -685,7 +751,7 @@ body {
 
 @media (max-width: 640px) {
     .xyq-sidebar {
-        width: min(15.5rem, calc(100vw - 16px)) !important;
+        max-width: calc(100vw - 48px) !important;
     }
 
     .xyq-home-main,
@@ -698,7 +764,7 @@ body {
     }
 
     .xyq-hero-title h1 {
-        font-size: 24px !important;
+        font-size: 32px !important;
     }
 
     .xyq-inspiration-grid {
@@ -717,6 +783,242 @@ body {
     }
 }
 
+/* Shared page canvas */
+.xyq-page {
+    background: var(--lp-canvas-app);
+    color: var(--lp-text-default);
+}
+
+.xyq-page-hero {
+    margin-bottom: 40px;
+    text-align: left;
+}
+
+.xyq-page-hero h1 {
+    color: var(--lp-text-strong);
+    font-size: 40px;
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    line-height: 1.08;
+}
+
+.xyq-page-hero p {
+    margin-top: 10px;
+    color: var(--lp-text-muted);
+    font-size: 16px;
+}
+
+.xyq-panel {
+    border: 1px solid var(--lp-border-subtle) !important;
+    border-radius: 28px !important;
+    background: var(--lp-surface) !important;
+    box-shadow: var(--lp-shadow-card) !important;
+}
+
+.xyq-choice {
+    border: 1px solid var(--lp-border-subtle);
+    border-radius: 22px;
+    background: var(--lp-surface);
+    color: var(--lp-text-default);
+    box-shadow: var(--lp-shadow-raised);
+    transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+}
+
+.xyq-choice:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--lp-shadow-card-hover);
+}
+
+.xyq-choice.is-active {
+    border-color: var(--lp-text-strong);
+    color: var(--lp-text-strong);
+    box-shadow: var(--lp-shadow-card);
+}
+
+.xyq-choice.is-active .text-gray-400 {
+    color: var(--lp-text-muted);
+}
+
+.xyq-dark-composer {
+    border: 1px solid rgba(17, 17, 17, 0.08) !important;
+    border-radius: 28px !important;
+    background: var(--color-white) !important;
+    color: var(--lp-text-default);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 18px 50px rgba(0, 0, 0, 0.05) !important;
+}
+
+.xyq-dark-composer label,
+.xyq-dark-composer .text-gray-700,
+.xyq-dark-composer .text-gray-600,
+.xyq-dark-composer .text-gray-500,
+.xyq-dark-composer .text-neutral-500,
+.xyq-dark-composer .text-neutral-600 {
+    color: var(--lp-text-muted) !important;
+}
+
+.xyq-dark-composer .text-gray-400,
+.xyq-dark-composer .text-indigo-600 {
+    color: #8a8a8a !important;
+}
+
+.xyq-dark-composer select,
+.xyq-dark-composer input[type="text"] {
+    border: 1px solid #e7e7e7 !important;
+    border-radius: 16px !important;
+    background: #fafafa !important;
+    color: var(--lp-text-strong) !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.xyq-dark-composer textarea {
+    border: 0 !important;
+    border-radius: 18px !important;
+    background: #f6f6f7 !important;
+    color: var(--lp-text-strong) !important;
+    font-size: 16px !important;
+    line-height: 1.6 !important;
+    outline: none !important;
+    box-shadow: none !important;
+    padding: 16px 18px !important;
+}
+
+.xyq-dark-composer textarea::placeholder,
+.xyq-dark-composer input::placeholder {
+    color: #a3a3a3 !important;
+}
+
+.xyq-dark-composer .bg-indigo-100,
+.xyq-dark-composer .bg-indigo-50,
+.xyq-dark-composer .bg-neutral-900 {
+    background: var(--lp-text-strong) !important;
+    color: var(--color-white) !important;
+}
+
+.xyq-dark-composer .text-indigo-700 {
+    color: var(--lp-text-strong) !important;
+}
+
+.xyq-dark-composer button.border-indigo-500,
+.xyq-dark-composer button.border-2 {
+    border-color: #e6e6e6 !important;
+    border-radius: 999px !important;
+    background: var(--color-white) !important;
+    color: var(--lp-text-muted) !important;
+}
+
+.xyq-dark-composer button.bg-indigo-50,
+.xyq-dark-composer button.bg-neutral-900 {
+    border-color: transparent !important;
+    background: var(--lp-text-strong) !important;
+    color: var(--color-white) !important;
+}
+
+.xyq-dark-composer .border-dashed {
+    border-color: #d9d9d9 !important;
+    background: #fafafa !important;
+    color: var(--lp-text-muted);
+    border-radius: 18px !important;
+}
+
+.xyq-dark-composer .bg-gray-50 {
+    background: #f6f6f7 !important;
+    color: var(--lp-text-muted) !important;
+}
+
+.xyq-generate {
+    display: flex;
+    width: 100%;
+    min-height: 48px;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: 0;
+    border-radius: 999px;
+    background: var(--lp-text-strong);
+    color: var(--color-white);
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.xyq-generate:hover:not(:disabled) {
+    background: #2a2a2a;
+}
+
+.xyq-generate:disabled {
+    cursor: not-allowed;
+    background: #f1f1f2;
+    color: #b0b0b0;
+}
+
+.xyq-dark-prompt {
+    min-height: 168px !important;
+    resize: none;
+    border: 1px solid transparent !important;
+    border-radius: 22px !important;
+    background: #f4f4f5 !important;
+    padding: 20px 22px !important;
+    color: var(--lp-text-strong) !important;
+    font-size: 16px !important;
+    line-height: 1.6 !important;
+    outline: none !important;
+    box-shadow: none;
+}
+
+.xyq-dark-prompt:focus {
+    border-color: rgba(17, 17, 17, 0.18) !important;
+    background: var(--color-white) !important;
+}
+
+.xyq-dark-prompt::placeholder {
+    color: #a3a3a3 !important;
+}
+
+.xyq-note {
+    border-radius: 18px;
+    background: var(--lp-surface-subtle);
+    color: #3f3f3f;
+}
+
+.xyq-note p {
+    color: #3f3f3f;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.xyq-segment {
+    border-radius: 999px !important;
+    background: var(--lp-surface-subtle) !important;
+}
+
+.xyq-segment > button {
+    border-radius: 999px !important;
+    font-weight: 500;
+}
+
+.xyq-segment > button.is-on {
+    background: var(--lp-surface) !important;
+    color: var(--lp-text-strong) !important;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06), 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+.xyq-history-card,
+.xyq-pipeline .bg-white.rounded-xl,
+.xyq-sandbox .bg-white.rounded-xl {
+    border-radius: 18px;
+}
+
+.xyq-topbar button.rounded-lg,
+.xyq-topbar nav button {
+    border-radius: 999px;
+}
+
+@media (max-width: 640px) {
+    .xyq-page-hero h1 {
+        font-size: 30px;
+    }
+}
+
 @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
@@ -725,5 +1027,437 @@ body {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
+    }
+}
+
+/* Director Mode — near-black product chrome */
+.xyq-shell {
+    background: #070709 !important;
+    color: #e4e4e7 !important;
+    color-scheme: dark;
+}
+
+.xyq-main,
+.xyq-home,
+.xyq-page {
+    background: #070709 !important;
+    color: #e4e4e7 !important;
+}
+
+.xyq-home {
+    background:
+        radial-gradient(900px 420px at 50% 180px, rgba(255, 64, 140, 0.16), transparent 60%),
+        radial-gradient(700px 360px at 58% 240px, rgba(124, 58, 237, 0.18), transparent 62%),
+        #070709 !important;
+}
+
+.xyq-sidebar {
+    background: #0d0d11 !important;
+    border-right: 1px solid rgba(255, 255, 255, 0.06) !important;
+}
+
+.xyq-nav-group + .xyq-nav-group {
+    margin-top: 10px;
+}
+
+.xyq-nav-label {
+    margin: 8px 14px 4px;
+    color: #6d6d78;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+}
+
+.xyq-sidebar-link.is-active {
+    background: rgba(255, 255, 255, 0.04) !important;
+    color: #ffffff !important;
+    box-shadow: inset 0 0 0 1px rgba(232, 121, 249, 0.85), 0 0 22px rgba(168, 85, 247, 0.28);
+}
+
+.xyq-sidebar-footer > button.is-active {
+    background: rgba(255, 255, 255, 0.04) !important;
+    color: #ffffff !important;
+    box-shadow: inset 0 0 0 1px rgba(232, 121, 249, 0.85);
+}
+
+.xyq-shell header,
+.xyq-topbar {
+    background: rgba(7, 7, 9, 0.86) !important;
+    border-bottom-color: rgba(255, 255, 255, 0.06) !important;
+    color: #f4f4f5;
+}
+
+.xyq-hero-title h1,
+.xyq-page-hero h1 {
+    color: #ffffff !important;
+    font-size: 52px !important;
+    font-weight: 650 !important;
+    letter-spacing: -0.045em;
+}
+
+.xyq-hero-title p,
+.xyq-page-hero p {
+    color: #a1a1aa !important;
+    font-size: 16px !important;
+}
+
+.xyq-composer-glow {
+    position: relative;
+    max-width: 860px;
+    margin: 0 auto 28px;
+}
+
+.xyq-composer-glow .xyq-composer {
+    max-width: none;
+    margin: 0 !important;
+}
+
+.xyq-composer-glow::after {
+    content: "";
+    position: absolute;
+    left: 8%;
+    right: 8%;
+    bottom: 6px;
+    height: 54px;
+    background: linear-gradient(90deg, rgba(255, 70, 150, 0.85), rgba(168, 85, 247, 0.8));
+    filter: blur(28px);
+    opacity: 0.9;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.xyq-composer,
+.xyq-dark-composer {
+    position: relative;
+    z-index: 1;
+    border: 1px solid transparent !important;
+    border-radius: 26px !important;
+    background:
+        linear-gradient(#14141a, #14141a) padding-box,
+        linear-gradient(100deg, rgba(255, 90, 150, 0.9), rgba(168, 85, 247, 0.85)) border-box !important;
+    color: #f4f4f5 !important;
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45) !important;
+}
+
+.xyq-prompt-input,
+.xyq-dark-composer textarea,
+.xyq-dark-prompt {
+    color: #ffffff !important;
+    background: transparent !important;
+    border-color: transparent !important;
+}
+
+.xyq-dark-composer textarea,
+.xyq-dark-prompt {
+    background: rgba(255, 255, 255, 0.03) !important;
+    border: 1px solid rgba(255, 255, 255, 0.06) !important;
+    border-radius: 18px !important;
+}
+
+.xyq-prompt-input::placeholder,
+.xyq-dark-composer textarea::placeholder,
+.xyq-dark-prompt::placeholder {
+    color: #8d8d98 !important;
+}
+
+.xyq-composer-toolbar {
+    border-top-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.xyq-tool-button {
+    background: rgba(255, 255, 255, 0.06) !important;
+    color: #d4d4d8 !important;
+}
+
+.xyq-tool-button:hover {
+    background: rgba(255, 255, 255, 0.12) !important;
+    color: #ffffff !important;
+}
+
+.xyq-tool-button.bg-blue-50,
+.xyq-tool-button.is-on {
+    background: #f4f4f5 !important;
+    color: #09090b !important;
+}
+
+.xyq-upload-button,
+.xyq-action-secondary:not(:disabled) {
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    background: rgba(255, 255, 255, 0.04) !important;
+    color: #f4f4f5 !important;
+}
+
+.xyq-action-primary:not(:disabled),
+.xyq-pill-dark:not(:disabled),
+.xyq-page .xyq-pill-dark:not(:disabled),
+.xyq-pipeline .xyq-pill-dark:not(:disabled),
+.xyq-shell button.bg-neutral-950 {
+    background: #f4f4f5 !important;
+    color: #09090b !important;
+}
+
+.xyq-action-primary:hover:not(:disabled),
+.xyq-pill-dark:hover:not(:disabled),
+.xyq-page .xyq-pill-dark:hover:not(:disabled),
+.xyq-pipeline .xyq-pill-dark:hover:not(:disabled) {
+    background: #ffffff !important;
+}
+
+.xyq-generate {
+    background: linear-gradient(90deg, #ff4d8d, #a855f7) !important;
+    color: #ffffff !important;
+}
+
+.xyq-generate:disabled,
+.xyq-action-primary:disabled,
+.xyq-pill-dark:disabled,
+.xyq-page .xyq-pill-dark:disabled {
+    background: rgba(255, 255, 255, 0.08) !important;
+    color: #6d6d78 !important;
+}
+
+.xyq-suggest-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    max-width: 860px;
+    margin: 8px auto 56px;
+}
+
+.xyq-suggest-pill {
+    min-height: 36px;
+    padding: 0 14px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 999px;
+    background: #1a1a21;
+    color: #d4d4d8;
+    font-size: 13px;
+}
+
+.xyq-suggest-pill:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    background: #23232c;
+    color: #ffffff;
+}
+
+.xyq-inspiration h3,
+.xyq-history h3 {
+    color: #ffffff !important;
+    font-size: 28px !important;
+}
+
+.xyq-inspiration-card,
+.xyq-panel,
+.xyq-choice,
+.xyq-history-card,
+.xyq-generation-panel,
+.xyq-settings-menu,
+.xyq-episodes-popover,
+.xyq-delete-dialog {
+    background: #14141a !important;
+    border-color: rgba(255, 255, 255, 0.08) !important;
+    color: #e4e4e7 !important;
+}
+
+.xyq-choice.is-active {
+    border-color: rgba(232, 121, 249, 0.9) !important;
+    box-shadow: 0 0 0 1px rgba(232, 121, 249, 0.7), 0 0 24px rgba(168, 85, 247, 0.25) !important;
+    color: #ffffff !important;
+}
+
+.xyq-note,
+.xyq-segment,
+.xyq-dark-composer .bg-gray-50 {
+    background: #101014 !important;
+    color: #d4d4d8 !important;
+}
+
+.xyq-segment > button.is-on {
+    background: #f4f4f5 !important;
+    color: #09090b !important;
+}
+
+.xyq-generation-panel select,
+.xyq-generation-panel button,
+.xyq-dark-composer select,
+.xyq-dark-composer input[type="text"],
+.xyq-shell select,
+.xyq-shell input[type="text"],
+.xyq-shell input[type="number"],
+.xyq-shell input[type="password"] {
+    background: #101014 !important;
+    color: #f4f4f5 !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.xyq-shell .bg-white,
+.xyq-shell .bg-white\/95,
+.xyq-shell .bg-white\/70,
+.xyq-shell .bg-white\/60,
+.xyq-shell .bg-gray-50,
+.xyq-shell .bg-gray-50\/50,
+.xyq-shell .bg-neutral-50,
+.xyq-shell .bg-neutral-100,
+.xyq-shell .bg-gray-100 {
+    background-color: #16161c !important;
+}
+
+.xyq-shell .text-gray-900,
+.xyq-shell .text-gray-800,
+.xyq-shell .text-gray-700,
+.xyq-shell .text-neutral-950,
+.xyq-shell .text-neutral-900,
+.xyq-shell .text-neutral-800 {
+    color: #f4f4f5 !important;
+}
+
+.xyq-shell .text-gray-600,
+.xyq-shell .text-gray-500,
+.xyq-shell .text-neutral-600,
+.xyq-shell .text-neutral-500,
+.xyq-shell .text-gray-400 {
+    color: #a1a1aa !important;
+}
+
+.xyq-shell .border-gray-100,
+.xyq-shell .border-gray-200,
+.xyq-shell .border-neutral-200,
+.xyq-shell .border-neutral-300 {
+    border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.xyq-shell button.bg-neutral-950,
+.xyq-action-primary,
+.xyq-pill-dark,
+.xyq-suggest-pill,
+.xyq-segment > button.is-on,
+.xyq-tool-button.bg-blue-50,
+.xyq-generate {
+    color: inherit;
+}
+
+.xyq-shell button.bg-neutral-950,
+.xyq-action-primary:not(:disabled),
+.xyq-pill-dark:not(:disabled),
+.xyq-segment > button.is-on,
+.xyq-tool-button.bg-blue-50 {
+    color: #09090b !important;
+}
+
+.xyq-generate:not(:disabled) {
+    color: #ffffff !important;
+}
+
+.xyq-topbar nav button.bg-neutral-950 {
+    background: rgba(255, 255, 255, 0.06) !important;
+    color: #ffffff !important;
+    box-shadow: inset 0 0 0 1px rgba(232, 121, 249, 0.8);
+}
+
+@media (max-width: 640px) {
+    .xyq-hero-title h1,
+    .xyq-page-hero h1 {
+        font-size: 32px !important;
+    }
+}
+
+.xyq-shell aside.xyq-sidebar {
+    background: #0c0c10 !important;
+}
+
+.xyq-shell .xyq-composer.bg-white,
+.xyq-shell .xyq-dark-composer {
+    border: 1px solid transparent !important;
+    background:
+        linear-gradient(#14141a, #14141a) padding-box,
+        linear-gradient(100deg, rgba(255, 92, 154, 0.95), rgba(168, 85, 247, 0.92)) border-box !important;
+}
+
+.xyq-shell .xyq-dark-prompt,
+.xyq-shell .xyq-dark-composer textarea {
+    background: #101014 !important;
+    color: #ffffff !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.xyq-shell .xyq-action-primary:not(:disabled),
+.xyq-shell .xyq-pill-dark:not(:disabled),
+.xyq-shell .xyq-upload-button.bg-blue-50 {
+    background: #f5f5f5 !important;
+    color: #09090b !important;
+}
+
+.xyq-shell .xyq-action-primary:disabled,
+.xyq-shell .xyq-pill-dark:disabled,
+.xyq-shell .xyq-generate:disabled {
+    background: rgba(255, 255, 255, 0.08) !important;
+    color: #71717a !important;
+}
+
+.xyq-prompt-field {
+    position: relative;
+}
+
+.xyq-prompt-field .xyq-prompt-input::placeholder {
+    color: transparent !important;
+    opacity: 0 !important;
+}
+
+.xyq-rotating-hint {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    left: 0;
+    overflow: hidden;
+    height: calc(6px + 1.55em);
+    margin: 0;
+    padding: 6px 4px 0;
+    pointer-events: none;
+    color: #8d8d98;
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 1.55;
+}
+
+.xyq-rotating-hint span {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    animation: xyq-hint-enter 420ms ease;
+}
+
+.xyq-rotating-hint.is-leaving span {
+    animation: xyq-hint-leave 260ms ease forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .xyq-rotating-hint span,
+    .xyq-rotating-hint.is-leaving span {
+        animation: none;
+    }
+}
+
+@keyframes xyq-hint-enter {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes xyq-hint-leave {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-8px);
     }
 }

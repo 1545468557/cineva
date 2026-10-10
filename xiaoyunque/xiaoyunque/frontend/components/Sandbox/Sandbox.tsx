@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef, DragEvent } from 'react';
-import { Sparkles, Image, Video, MessageSquare, Zap, Loader2, Copy, Check, Trash2, X, FolderOpen, Upload, Globe, Hexagon } from 'lucide-react';
+import { Sparkles, Image, Video, MessageSquare, Zap, Loader2, Copy, Check, Trash2, X, FolderOpen, Upload, Globe } from 'lucide-react';
 import { useSearchParams } from 'next/navigation';
 import type { ModelOption, ProviderGroup } from '@/config/models';
 import BrandHeader from '@/components/BrandHeader';
@@ -201,7 +201,7 @@ function ImageUploader({
           type="button"
           onClick={() => setInputMode('url')}
           className={`text-xs px-3 py-1.5 rounded-lg transition-colors ${
-            inputMode === 'url' ? 'bg-indigo-100 text-indigo-700' : 'text-gray-500 hover:bg-gray-100'
+            inputMode === 'url' ? 'bg-neutral-900 text-white' : 'text-neutral-500 hover:bg-neutral-100'
           }`}
         >
           URL 地址
@@ -210,7 +210,7 @@ function ImageUploader({
           type="button"
           onClick={() => setInputMode('file')}
           className={`text-xs px-3 py-1.5 rounded-lg transition-colors ${
-            inputMode === 'file' ? 'bg-indigo-100 text-indigo-700' : 'text-gray-500 hover:bg-gray-100'
+            inputMode === 'file' ? 'bg-neutral-900 text-white' : 'text-neutral-500 hover:bg-neutral-100'
           }`}
         >
           本地上传
@@ -591,30 +591,23 @@ export default function SandboxPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50/50">
+    <div className="xyq-page xyq-sandbox min-h-screen">
       <BrandHeader />
 
-      <main className="max-w-5xl mx-auto px-6 py-8">
+      <main className="max-w-5xl mx-auto px-8 py-14">
         <>
-            <div className="mb-8 text-center">
-              <div className="inline-flex items-center gap-2 mb-3">
-                <Hexagon className="w-7 h-7 text-blue-500" />
-                <h1 className="text-2xl font-bold text-gray-800">临时工作台</h1>
-              </div>
-              <p className="text-sm text-gray-500">独立调用各种 AI 工具</p>
+            <div className="xyq-page-hero">
+              <h1>临时工作台</h1>
+              <p>独立调用各种 AI 工具</p>
             </div>
 
             {/* 工具选择 */}
-            <div className="grid grid-cols-5 gap-3 mb-8">
+            <div className="grid grid-cols-2 gap-3 mb-8 sm:grid-cols-3 lg:grid-cols-5">
               {tools.map(tool => (
                 <button
                   key={tool.id}
                   onClick={() => handleToolChange(tool.id)}
-                  className={`p-4 rounded-xl border-2 transition-all text-center ${
-                    activeTool === tool.id
-                      ? 'border-indigo-500 bg-indigo-50 text-indigo-700 shadow-md'
-                      : 'border-gray-200 bg-white text-gray-600 hover:border-gray-300 hover:shadow-sm'
-                  }`}
+                  className={`xyq-choice p-5 text-center ${activeTool === tool.id ? 'is-active' : ''}`}
                 >
                   <div className="flex justify-center mb-2">{tool.icon}</div>
                   <div className="font-medium text-sm">{tool.name}</div>
@@ -624,7 +617,7 @@ export default function SandboxPage() {
             </div>
 
             {/* 输入区域 */}
-            <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 mb-6">
+            <div className="xyq-dark-composer p-6 mb-8 sm:p-7">
               {/* 模型选择 */}
               <div className="mb-4">
                 <div className="flex items-center justify-between">
@@ -693,7 +686,7 @@ export default function SandboxPage() {
               <button
                 onClick={handleSubmit}
                 disabled={loading || !canSubmit()}
-                className="w-full py-3 px-6 bg-indigo-600 text-white font-medium rounded-xl hover:bg-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center justify-center gap-2"
+                className="xyq-generate"
               >
                 {loading ? (
                   <>
@@ -760,7 +753,7 @@ export default function SandboxPage() {
                       setResult(record.output?.response || null);
                       setError(null);
                     }}
-                    className={`bg-white rounded-xl border border-gray-200 p-4 hover:border-indigo-300 hover:shadow-sm transition-all ${manageMode ? '' : 'cursor-pointer'}`}
+                    className={`bg-white rounded-2xl border border-neutral-200 p-4 shadow-sm transition-all hover:shadow-md ${manageMode ? '' : 'cursor-pointer'}`}
                   >
                     <div className="flex items-start justify-between gap-3">
                       <div className="min-w-0">
@@ -768,7 +761,7 @@ export default function SandboxPage() {
                           {record.input.prompt || record.input.reference_image || '(无提示词)'}
                         </div>
                         <div className="mt-1.5 flex flex-wrap items-center gap-2">
-                          <span className="text-[10px] bg-indigo-50 text-indigo-600 px-1.5 py-0.5 rounded">{record.model}</span>
+                          <span className="rounded-full bg-neutral-100 px-2 py-0.5 text-[10px] text-neutral-600">{record.model}</span>
                           <span className="text-[10px] text-gray-400">{formatDate(record.created_at)}</span>
                         </div>
                       </div>

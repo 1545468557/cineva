@@ -1385,7 +1385,7 @@ export default function WorkflowPanel() {
   const showHome = activeStage === null;
 
   return (
-    <div className="flex h-screen w-full min-w-0 flex-col bg-gray-50/50">
+    <div className="flex h-screen w-full min-w-0 flex-col bg-white">
       <TopBar
         activeStage={activeStage}
         stageStatuses={stageStatuses}
