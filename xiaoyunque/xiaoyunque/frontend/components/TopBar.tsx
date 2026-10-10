@@ -187,8 +187,8 @@ function ModelSelector({
         className={clsx(
           'flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all',
           open
-            ? 'bg-blue-50 text-blue-700 ring-1 ring-blue-200'
-            : 'text-gray-500 hover:bg-gray-50'
+            ? 'bg-neutral-950 text-white'
+            : 'text-neutral-500 hover:bg-neutral-100'
         )}
         title="生成配置"
       >
@@ -240,8 +240,8 @@ function ModelSelector({
                   onClick={() => update('video_ratio', r.id)}
                   className={`flex flex-col items-center gap-0.5 p-1 rounded border transition-all ${
                     config.video_ratio === r.id
-                      ? 'border-indigo-500 bg-indigo-50'
-                      : 'border-gray-200 hover:border-gray-300'
+                      ? 'border-neutral-950 bg-neutral-100'
+                      : 'border-neutral-200 hover:border-neutral-400'
                   }`}
                   title={r.label}
                 >
@@ -381,7 +381,7 @@ export default function TopBar({
                   className={clsx(
                     'flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all whitespace-nowrap flex-shrink-0',
                     isActive
-                      ? 'bg-blue-50 text-blue-700 ring-1 ring-blue-200'
+                      ? 'bg-neutral-950 text-white'
                       : status === 'completed'
                         ? 'text-green-700 hover:bg-green-50'
                         : status === 'error'

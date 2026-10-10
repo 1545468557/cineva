@@ -301,9 +301,9 @@ export default function HomePage({ onStartProject, onResumeProject, onDeleteSess
         {/* 标题 */}
         <div className="xyq-hero-title text-center mb-10">
           <div className="inline-flex items-center gap-2 mb-3">
-            <h1 className="text-2xl font-medium text-white">Hi，和 Cineva 一起聊聊创作想法</h1>
+            <h1 className="text-neutral-950">Hi，和 Cineva 一起聊聊创作想法</h1>
           </div>
-          <p className="text-sm text-white/75">
+          <p className="text-neutral-500">
             从一句灵感开始，让 AI 陪你完成整部短片
           </p>
         </div>
@@ -683,10 +683,10 @@ export default function HomePage({ onStartProject, onResumeProject, onDeleteSess
                   style={{ backgroundImage: `url(${INSPIRATION_IMAGES[idx]})` }}
                 />
                 <div className="xyq-inspiration-copy">
-                  <div className="text-sm font-medium text-white transition-colors mb-1">
+                  <div className="text-sm font-medium text-neutral-950 transition-colors mb-1">
                     {ex.title}
                   </div>
-                  <div className="text-xs text-white/70 line-clamp-2">
+                  <div className="text-xs text-neutral-500 line-clamp-2">
                     {ex.description}
                   </div>
                 </div>

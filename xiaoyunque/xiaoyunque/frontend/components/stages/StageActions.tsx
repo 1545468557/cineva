@@ -103,7 +103,7 @@ export default function StageActions({
           <button
             onClick={onEdit}
             disabled={isRunning}
-            className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 text-gray-700 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors disabled:opacity-50"
+            className="flex items-center gap-2 rounded-full border border-neutral-200 bg-white px-4 py-2 text-sm font-medium text-neutral-700 transition-colors hover:bg-neutral-50 disabled:opacity-50"
           >
             <Edit3 className="w-4 h-4" />
             修改
@@ -114,7 +114,7 @@ export default function StageActions({
           <button
             onClick={onSave}
             disabled={isRunning}
-            className="flex items-center gap-2 px-4 py-2 bg-white border border-blue-300 text-blue-600 rounded-lg text-sm font-medium hover:bg-blue-50 transition-colors disabled:opacity-50"
+            className="flex items-center gap-2 rounded-full border border-neutral-300 bg-white px-4 py-2 text-sm font-medium text-neutral-800 transition-colors hover:bg-neutral-50 disabled:opacity-50"
           >
             <Save className="w-4 h-4" />
             保存
@@ -125,7 +125,7 @@ export default function StageActions({
           <button
             onClick={handleSaveClick}
             disabled={saveState !== 'idle' || isRunning}
-            className="flex items-center gap-2 px-4 py-2 bg-white border border-blue-600 text-blue-600 rounded-lg text-sm font-medium hover:bg-blue-50 transition-colors disabled:opacity-50 min-w-[120px] justify-center"
+            className="flex min-w-[120px] items-center justify-center gap-2 rounded-full border border-neutral-900 bg-white px-4 py-2 text-sm font-medium text-neutral-900 transition-colors hover:bg-neutral-50 disabled:opacity-50"
           >
             {saveState === 'saving' ? (
               <Loader2 className="w-4 h-4 animate-spin" />
@@ -142,7 +142,7 @@ export default function StageActions({
           <button
             onClick={onConfirm}
             disabled={isRunning}
-            className="flex items-center gap-2 px-6 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:bg-blue-300"
+            className="flex items-center gap-2 rounded-full bg-neutral-950 px-6 py-2 text-sm font-medium text-white transition-colors hover:bg-neutral-800 disabled:bg-neutral-200 disabled:text-neutral-400 disabled:opacity-100"
           >
             <CheckCircle className="w-4 h-4" />
             确认并继续
