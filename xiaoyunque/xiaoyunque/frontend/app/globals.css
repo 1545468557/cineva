@@ -39,34 +39,34 @@
     --radius-20: 28px;
     --radius-pill: 9999px;
 
-    /* Semantic tokens used by the XiaoYunQue application surfaces. */
-    --background: var(--color-gray-25);
-    --foreground: var(--color-black-soft);
+    /* Semantic tokens: near-black Director Mode canvas. */
+    --background: #070709;
+    --foreground: #f4f4f5;
     --font-app: Inter, "SF Pro Display", "Avenir Next", "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", "Microsoft YaHei", system-ui, sans-serif;
-    --lp-canvas-app: var(--color-gray-25);
-    --lp-surface: var(--color-white);
-    --lp-surface-subtle: var(--color-gray-100);
-    --lp-surface-soft: var(--color-gray-175);
-    --lp-text-strong: var(--color-black-soft);
-    --lp-text-default: var(--color-black-soft);
-    --lp-text-inverse: var(--color-white);
-    --lp-text-muted: var(--color-gray-600);
-    --lp-text-subtle: var(--color-gray-450);
-    --lp-text-disabled: var(--color-gray-500);
-    --lp-action-primary: var(--color-black-soft);
-    --lp-accent: var(--lp-action-primary);
-    --lp-accent-soft: var(--color-black-a6);
+    --lp-canvas-app: #070709;
+    --lp-surface: #121216;
+    --lp-surface-subtle: #1a1a21;
+    --lp-surface-soft: #23232c;
+    --lp-text-strong: #ffffff;
+    --lp-text-default: #e4e4e7;
+    --lp-text-inverse: #09090b;
+    --lp-text-muted: #a1a1aa;
+    --lp-text-subtle: #8b8b96;
+    --lp-text-disabled: #5c5c66;
+    --lp-action-primary: #f4f4f5;
+    --lp-accent: #e879f9;
+    --lp-accent-soft: rgba(232, 121, 249, 0.16);
     --lp-error: var(--color-red-500);
     --lp-error-hover: var(--color-red-400);
     --lp-error-active: var(--color-red-700);
     --lp-error-soft: var(--color-red-a10);
-    --lp-border-subtle: var(--color-gray-200);
-    --lp-border-divider: var(--color-gray-200);
-    --lp-border-strong: var(--color-gray-300);
-    --lp-surface-hover: var(--color-black-a4);
-    --lp-surface-active: var(--color-black-a6);
-    --lp-surface-strong: var(--color-black-a10);
-    --lp-border-medium: var(--color-black-a15);
+    --lp-border-subtle: rgba(255, 255, 255, 0.08);
+    --lp-border-divider: rgba(255, 255, 255, 0.08);
+    --lp-border-strong: rgba(255, 255, 255, 0.16);
+    --lp-surface-hover: rgba(255, 255, 255, 0.06);
+    --lp-surface-active: rgba(255, 255, 255, 0.1);
+    --lp-surface-strong: rgba(255, 255, 255, 0.14);
+    --lp-border-medium: rgba(255, 255, 255, 0.18);
     --lp-shadow-raised: 0 1px 2px rgba(0, 0, 0, 0.04);
     --lp-shadow-card: 0 1px 2px rgba(0, 0, 0, 0.04), 0 18px 40px rgba(0, 0, 0, 0.05);
     --lp-shadow-card-hover: 0 18px 44px rgba(0, 0, 0, 0.1);
@@ -1028,4 +1028,369 @@ body {
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
     }
+}
+
+/* Director Mode — near-black product chrome */
+.xyq-shell {
+    background: #070709 !important;
+    color: #e4e4e7 !important;
+    color-scheme: dark;
+}
+
+.xyq-main,
+.xyq-home,
+.xyq-page {
+    background: #070709 !important;
+    color: #e4e4e7 !important;
+}
+
+.xyq-home {
+    background:
+        radial-gradient(900px 420px at 50% 180px, rgba(255, 64, 140, 0.16), transparent 60%),
+        radial-gradient(700px 360px at 58% 240px, rgba(124, 58, 237, 0.18), transparent 62%),
+        #070709 !important;
+}
+
+.xyq-sidebar {
+    background: #0d0d11 !important;
+    border-right: 1px solid rgba(255, 255, 255, 0.06) !important;
+}
+
+.xyq-nav-group + .xyq-nav-group {
+    margin-top: 10px;
+}
+
+.xyq-nav-label {
+    margin: 8px 14px 4px;
+    color: #6d6d78;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+}
+
+.xyq-sidebar-link.is-active {
+    background: rgba(255, 255, 255, 0.04) !important;
+    color: #ffffff !important;
+    box-shadow: inset 0 0 0 1px rgba(232, 121, 249, 0.85), 0 0 22px rgba(168, 85, 247, 0.28);
+}
+
+.xyq-sidebar-footer > button.is-active {
+    background: rgba(255, 255, 255, 0.04) !important;
+    color: #ffffff !important;
+    box-shadow: inset 0 0 0 1px rgba(232, 121, 249, 0.85);
+}
+
+.xyq-shell header,
+.xyq-topbar {
+    background: rgba(7, 7, 9, 0.86) !important;
+    border-bottom-color: rgba(255, 255, 255, 0.06) !important;
+    color: #f4f4f5;
+}
+
+.xyq-hero-title h1,
+.xyq-page-hero h1 {
+    color: #ffffff !important;
+    font-size: 52px !important;
+    font-weight: 650 !important;
+    letter-spacing: -0.045em;
+}
+
+.xyq-hero-title p,
+.xyq-page-hero p {
+    color: #a1a1aa !important;
+    font-size: 16px !important;
+}
+
+.xyq-composer-glow {
+    position: relative;
+    max-width: 860px;
+    margin: 0 auto 28px;
+}
+
+.xyq-composer-glow .xyq-composer {
+    max-width: none;
+    margin: 0 !important;
+}
+
+.xyq-composer-glow::after {
+    content: "";
+    position: absolute;
+    left: 8%;
+    right: 8%;
+    bottom: 6px;
+    height: 54px;
+    background: linear-gradient(90deg, rgba(255, 70, 150, 0.85), rgba(168, 85, 247, 0.8));
+    filter: blur(28px);
+    opacity: 0.9;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.xyq-composer,
+.xyq-dark-composer {
+    position: relative;
+    z-index: 1;
+    border: 1px solid transparent !important;
+    border-radius: 26px !important;
+    background:
+        linear-gradient(#14141a, #14141a) padding-box,
+        linear-gradient(100deg, rgba(255, 90, 150, 0.9), rgba(168, 85, 247, 0.85)) border-box !important;
+    color: #f4f4f5 !important;
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45) !important;
+}
+
+.xyq-prompt-input,
+.xyq-dark-composer textarea,
+.xyq-dark-prompt {
+    color: #ffffff !important;
+    background: transparent !important;
+    border-color: transparent !important;
+}
+
+.xyq-dark-composer textarea,
+.xyq-dark-prompt {
+    background: rgba(255, 255, 255, 0.03) !important;
+    border: 1px solid rgba(255, 255, 255, 0.06) !important;
+    border-radius: 18px !important;
+}
+
+.xyq-prompt-input::placeholder,
+.xyq-dark-composer textarea::placeholder,
+.xyq-dark-prompt::placeholder {
+    color: #8d8d98 !important;
+}
+
+.xyq-composer-toolbar {
+    border-top-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.xyq-tool-button {
+    background: rgba(255, 255, 255, 0.06) !important;
+    color: #d4d4d8 !important;
+}
+
+.xyq-tool-button:hover {
+    background: rgba(255, 255, 255, 0.12) !important;
+    color: #ffffff !important;
+}
+
+.xyq-tool-button.bg-blue-50,
+.xyq-tool-button.is-on {
+    background: #f4f4f5 !important;
+    color: #09090b !important;
+}
+
+.xyq-upload-button,
+.xyq-action-secondary:not(:disabled) {
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    background: rgba(255, 255, 255, 0.04) !important;
+    color: #f4f4f5 !important;
+}
+
+.xyq-action-primary:not(:disabled),
+.xyq-pill-dark:not(:disabled),
+.xyq-page .xyq-pill-dark:not(:disabled),
+.xyq-pipeline .xyq-pill-dark:not(:disabled),
+.xyq-shell button.bg-neutral-950 {
+    background: #f4f4f5 !important;
+    color: #09090b !important;
+}
+
+.xyq-action-primary:hover:not(:disabled),
+.xyq-pill-dark:hover:not(:disabled),
+.xyq-page .xyq-pill-dark:hover:not(:disabled),
+.xyq-pipeline .xyq-pill-dark:hover:not(:disabled) {
+    background: #ffffff !important;
+}
+
+.xyq-generate {
+    background: linear-gradient(90deg, #ff4d8d, #a855f7) !important;
+    color: #ffffff !important;
+}
+
+.xyq-generate:disabled,
+.xyq-action-primary:disabled,
+.xyq-pill-dark:disabled,
+.xyq-page .xyq-pill-dark:disabled {
+    background: rgba(255, 255, 255, 0.08) !important;
+    color: #6d6d78 !important;
+}
+
+.xyq-suggest-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    max-width: 860px;
+    margin: 8px auto 56px;
+}
+
+.xyq-suggest-pill {
+    min-height: 36px;
+    padding: 0 14px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 999px;
+    background: #1a1a21;
+    color: #d4d4d8;
+    font-size: 13px;
+}
+
+.xyq-suggest-pill:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    background: #23232c;
+    color: #ffffff;
+}
+
+.xyq-inspiration h3,
+.xyq-history h3 {
+    color: #ffffff !important;
+    font-size: 28px !important;
+}
+
+.xyq-inspiration-card,
+.xyq-panel,
+.xyq-choice,
+.xyq-history-card,
+.xyq-generation-panel,
+.xyq-settings-menu,
+.xyq-episodes-popover,
+.xyq-delete-dialog {
+    background: #14141a !important;
+    border-color: rgba(255, 255, 255, 0.08) !important;
+    color: #e4e4e7 !important;
+}
+
+.xyq-choice.is-active {
+    border-color: rgba(232, 121, 249, 0.9) !important;
+    box-shadow: 0 0 0 1px rgba(232, 121, 249, 0.7), 0 0 24px rgba(168, 85, 247, 0.25) !important;
+    color: #ffffff !important;
+}
+
+.xyq-note,
+.xyq-segment,
+.xyq-dark-composer .bg-gray-50 {
+    background: #101014 !important;
+    color: #d4d4d8 !important;
+}
+
+.xyq-segment > button.is-on {
+    background: #f4f4f5 !important;
+    color: #09090b !important;
+}
+
+.xyq-generation-panel select,
+.xyq-generation-panel button,
+.xyq-dark-composer select,
+.xyq-dark-composer input[type="text"],
+.xyq-shell select,
+.xyq-shell input[type="text"],
+.xyq-shell input[type="number"],
+.xyq-shell input[type="password"] {
+    background: #101014 !important;
+    color: #f4f4f5 !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.xyq-shell .bg-white,
+.xyq-shell .bg-white\/95,
+.xyq-shell .bg-white\/70,
+.xyq-shell .bg-white\/60,
+.xyq-shell .bg-gray-50,
+.xyq-shell .bg-gray-50\/50,
+.xyq-shell .bg-neutral-50,
+.xyq-shell .bg-neutral-100,
+.xyq-shell .bg-gray-100 {
+    background-color: #16161c !important;
+}
+
+.xyq-shell .text-gray-900,
+.xyq-shell .text-gray-800,
+.xyq-shell .text-gray-700,
+.xyq-shell .text-neutral-950,
+.xyq-shell .text-neutral-900,
+.xyq-shell .text-neutral-800 {
+    color: #f4f4f5 !important;
+}
+
+.xyq-shell .text-gray-600,
+.xyq-shell .text-gray-500,
+.xyq-shell .text-neutral-600,
+.xyq-shell .text-neutral-500,
+.xyq-shell .text-gray-400 {
+    color: #a1a1aa !important;
+}
+
+.xyq-shell .border-gray-100,
+.xyq-shell .border-gray-200,
+.xyq-shell .border-neutral-200,
+.xyq-shell .border-neutral-300 {
+    border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.xyq-shell button.bg-neutral-950,
+.xyq-action-primary,
+.xyq-pill-dark,
+.xyq-suggest-pill,
+.xyq-segment > button.is-on,
+.xyq-tool-button.bg-blue-50,
+.xyq-generate {
+    color: inherit;
+}
+
+.xyq-shell button.bg-neutral-950,
+.xyq-action-primary:not(:disabled),
+.xyq-pill-dark:not(:disabled),
+.xyq-segment > button.is-on,
+.xyq-tool-button.bg-blue-50 {
+    color: #09090b !important;
+}
+
+.xyq-generate:not(:disabled) {
+    color: #ffffff !important;
+}
+
+.xyq-topbar nav button.bg-neutral-950 {
+    background: rgba(255, 255, 255, 0.06) !important;
+    color: #ffffff !important;
+    box-shadow: inset 0 0 0 1px rgba(232, 121, 249, 0.8);
+}
+
+@media (max-width: 640px) {
+    .xyq-hero-title h1,
+    .xyq-page-hero h1 {
+        font-size: 32px !important;
+    }
+}
+
+.xyq-shell aside.xyq-sidebar {
+    background: #0c0c10 !important;
+}
+
+.xyq-shell .xyq-composer.bg-white,
+.xyq-shell .xyq-dark-composer {
+    border: 1px solid transparent !important;
+    background:
+        linear-gradient(#14141a, #14141a) padding-box,
+        linear-gradient(100deg, rgba(255, 92, 154, 0.95), rgba(168, 85, 247, 0.92)) border-box !important;
+}
+
+.xyq-shell .xyq-dark-prompt,
+.xyq-shell .xyq-dark-composer textarea {
+    background: #101014 !important;
+    color: #ffffff !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.xyq-shell .xyq-action-primary:not(:disabled),
+.xyq-shell .xyq-pill-dark:not(:disabled),
+.xyq-shell .xyq-upload-button.bg-blue-50 {
+    background: #f5f5f5 !important;
+    color: #09090b !important;
+}
+
+.xyq-shell .xyq-action-primary:disabled,
+.xyq-shell .xyq-pill-dark:disabled,
+.xyq-shell .xyq-generate:disabled {
+    background: rgba(255, 255, 255, 0.08) !important;
+    color: #71717a !important;
 }

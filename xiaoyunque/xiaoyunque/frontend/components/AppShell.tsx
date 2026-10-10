@@ -7,12 +7,17 @@ import clsx from 'clsx';
 import { useEffect, useState, type CSSProperties } from 'react';
 import { clearTempCache, fetchPipelineTasks, fetchSandboxTasks, fetchSessions, type PipelineTask, type SandboxTask } from '@/lib/workflowApi';
 
-const NAV_ITEMS = [
-  { href: '/', label: 'Cineva', icon: Home },
-  { href: '/sandbox', label: '临时工作台', icon: Hexagon },
-  { href: '/pipelines/standard', label: '文艺短视频', icon: Clapperboard },
-  { href: '/pipelines/action-transfer', label: '动作迁移', icon: Repeat2 },
-  { href: '/pipelines/digital-human', label: '数字人口播', icon: UserRound },
+const NAV_GROUPS = [
+  { label: '首页', items: [{ href: '/', label: 'Cineva', icon: Home }] },
+  { label: '工具', items: [{ href: '/sandbox', label: '临时工作台', icon: Hexagon }] },
+  {
+    label: '创作',
+    items: [
+      { href: '/pipelines/standard', label: '文艺短视频', icon: Clapperboard },
+      { href: '/pipelines/action-transfer', label: '动作迁移', icon: Repeat2 },
+      { href: '/pipelines/digital-human', label: '数字人口播', icon: UserRound },
+    ],
+  },
 ];
 
 const SETTINGS_ITEM = { href: '/settings', label: '设置', icon: Settings };
@@ -352,25 +357,30 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
             </div>
           </div>
           <nav className="xyq-sidebar-nav min-h-0 flex-1 overflow-y-auto p-3 space-y-1">
-            {NAV_ITEMS.map(item => {
-              const Icon = item.icon;
-              const active = item.href === '/' ? pathname === '/' : pathname.startsWith(item.href);
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={clsx(
-                    'xyq-sidebar-link flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors',
-                    active
-                      ? 'is-active bg-neutral-100 text-neutral-950'
-                      : 'text-neutral-500 hover:bg-neutral-100 hover:text-neutral-950'
-                  )}
-                >
-                  <Icon className="w-4 h-4 flex-shrink-0" />
-                  <span className="truncate">{item.label}</span>
-                </Link>
-              );
-            })}
+            {NAV_GROUPS.map(group => (
+              <div key={group.label} className="xyq-nav-group">
+                <div className="xyq-nav-label">{group.label}</div>
+                {group.items.map(item => {
+                  const Icon = item.icon;
+                  const active = item.href === '/' ? pathname === '/' : pathname.startsWith(item.href);
+                  return (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className={clsx(
+                        'xyq-sidebar-link flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors',
+                        active
+                          ? 'is-active'
+                          : 'text-zinc-400 hover:bg-white/5 hover:text-white'
+                      )}
+                    >
+                      <Icon className="w-4 h-4 flex-shrink-0" />
+                      <span className="truncate">{item.label}</span>
+                    </Link>
+                  );
+                })}
+              </div>
+            ))}
           </nav>
           <SidebarTaskPanels currentPath={pathname} />
           <div className="xyq-sidebar-footer relative border-t border-gray-100 p-3">

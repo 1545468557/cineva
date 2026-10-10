@@ -309,6 +309,7 @@ export default function HomePage({ onStartProject, onResumeProject, onDeleteSess
         </div>
 
         {/* 输入区域 */}
+        <div className="xyq-composer-glow">
         <div className="xyq-composer bg-white rounded-2xl shadow-sm border border-gray-200 p-5 mb-6">
           <textarea
             value={idea}
@@ -664,6 +665,20 @@ export default function HomePage({ onStartProject, onResumeProject, onDeleteSess
               </div>
             </div>
           )}
+        </div>
+        </div>
+
+        <div className="xyq-suggest-row">
+          {PROMPT_EXAMPLES.map(ex => (
+            <button
+              key={ex.title}
+              type="button"
+              className="xyq-suggest-pill"
+              onClick={() => handleExampleClick(ex.text)}
+            >
+              {ex.title}
+            </button>
+          ))}
         </div>
 
         {/* 示例卡片 */}
