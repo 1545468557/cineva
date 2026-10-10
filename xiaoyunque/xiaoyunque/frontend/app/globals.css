@@ -1394,3 +1394,65 @@ body {
     background: rgba(255, 255, 255, 0.08) !important;
     color: #71717a !important;
 }
+
+.xyq-prompt-field {
+    position: relative;
+}
+
+.xyq-prompt-field .xyq-prompt-input::placeholder {
+    color: transparent !important;
+}
+
+.xyq-rotating-hint {
+    position: absolute;
+    top: 6px;
+    right: 8px;
+    left: 4px;
+    overflow: hidden;
+    height: 1.6em;
+    pointer-events: none;
+    color: #8d8d98;
+    font-size: 17px;
+    line-height: 1.55;
+}
+
+.xyq-rotating-hint span {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    animation: xyq-hint-enter 420ms ease;
+}
+
+.xyq-rotating-hint.is-leaving span {
+    animation: xyq-hint-leave 260ms ease forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .xyq-rotating-hint span,
+    .xyq-rotating-hint.is-leaving span {
+        animation: none;
+    }
+}
+
+@keyframes xyq-hint-enter {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes xyq-hint-leave {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+}
