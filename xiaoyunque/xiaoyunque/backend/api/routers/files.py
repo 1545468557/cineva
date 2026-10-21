@@ -88,6 +88,7 @@ async def upload_media(file: UploadFile = File(...)):
     allowed_exts = [
         ".jpg", ".jpeg", ".png", ".webp", ".bmp",
         ".mp4", ".mov", ".avi", ".mkv", ".webm",
+        ".mp3", ".wav",
     ]
     filename = file.filename or "upload"
     ext = os.path.splitext(filename)[1].lower()

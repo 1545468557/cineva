@@ -2,14 +2,20 @@
 
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { CheckCircle2, ChevronLeft, ChevronRight, Clapperboard, Clock, Hexagon, Home, Loader2, Repeat2, Settings, Trash2, UserRound } from 'lucide-react';
+import GlobalDock from './GlobalDock';
+import { CheckCircle2, ChevronLeft, ChevronRight, Clapperboard, Clock, FolderKanban, Hexagon, Home, Library, Loader2, Repeat2, Settings, Sparkles, Trash2, UserRound } from 'lucide-react';
 import clsx from 'clsx';
-import { useEffect, useState, type CSSProperties } from 'react';
+import { useCallback, useEffect, useRef, useState, type CSSProperties } from 'react';
 import { clearTempCache, fetchPipelineTasks, fetchSandboxTasks, fetchSessions, type PipelineTask, type SandboxTask } from '@/lib/workflowApi';
 
 const NAV_GROUPS = [
   { label: '首页', items: [{ href: '/', label: 'Cineva', icon: Home }] },
-  { label: '工具', items: [{ href: '/sandbox', label: '临时工作台', icon: Hexagon }] },
+  { label: '项目', items: [
+    { href: '/projects', label: '我的项目', icon: FolderKanban },
+    { href: '/assets', label: '资产', icon: Library },
+    { href: '/skills', label: '技能', icon: Sparkles },
+    { href: '/showcase', label: '作品社区', icon: Clapperboard },
+  ] },
   {
     label: '创作',
     items: [
@@ -18,6 +24,7 @@ const NAV_GROUPS = [
       { href: '/pipelines/digital-human', label: '数字人口播', icon: UserRound },
     ],
   },
+  { label: '工具', items: [{ href: '/sandbox', label: '临时工作台', icon: Hexagon }] },
 ];
 
 const SETTINGS_ITEM = { href: '/settings', label: '设置', icon: Settings };
@@ -159,6 +166,12 @@ function saveDismissedCompletedTasks(ids: Set<string>) {
   window.localStorage.setItem(COMPLETED_TASK_DISMISS_KEY, JSON.stringify(Array.from(ids)));
 }
 
+/**
+ * 任务面板轮询间隔。3 秒太密：三个接口（sessions / tasks / sandbox）同时打，
+ * 后端稍慢就会互相踩。取 5 秒，并避免重复请求叠加。
+ */
+const TASK_POLL_INTERVAL_MS = 5000;
+
 function loadSidebarOpen(): boolean {
   if (typeof window === 'undefined') return true;
   const stored = window.localStorage.getItem(SIDEBAR_OPEN_KEY);
@@ -243,9 +256,19 @@ function SidebarTaskPanels({ currentPath }: { currentPath: string }) {
   const [completedTasks, setCompletedTasks] = useState<RunningTaskItem[]>([]);
   const [dismissedCompleted, setDismissedCompleted] = useState<Set<string>>(() => loadDismissedCompletedTasks());
   const [loading, setLoading] = useState(false);
+  const dismissedRef = useRef(dismissedCompleted);
+  useEffect(() => {
+    dismissedRef.current = dismissedCompleted;
+  }, [dismissedCompleted]);
+  /** 请求进行中标记，避免轮询叠加 */
+  const inflightRef = useRef(false);
 
-  const load = async () => {
+  const load = useCallback(async () => {
+    // 防止上一次请求还没回来就又发一次（切换 dismissedCompleted 会重建 effect）
+    if (inflightRef.current) return;
+    inflightRef.current = true;
     setLoading(true);
+    const dismissed = dismissedRef.current;
     try {
       const [pipelineRecords, sessions, sandboxRecords] = await Promise.all([
         fetchPipelineTasks(100).catch(() => []),
@@ -260,24 +283,27 @@ function SidebarTaskPanels({ currentPath }: { currentPath: string }) {
       setCompletedTasks([
         ...pipelineRecords.map(pipelineCompletedTaskItem).filter((task): task is RunningTaskItem => Boolean(task)),
         ...sessions.map(projectReviewTaskFromSession).filter((task): task is RunningTaskItem => Boolean(task)),
-      ].filter(task => !dismissedCompleted.has(task.id)));
+      ].filter(task => !dismissed.has(task.id)));
     } finally {
+      inflightRef.current = false;
       setLoading(false);
     }
-  };
+  }, []);
 
   useEffect(() => {
     load().catch(() => {});
-    const timer = window.setInterval(() => load().catch(() => {}), 3000);
+    const timer = window.setInterval(() => {
+      if (document.visibilityState === 'visible') load().catch(() => {});
+    }, TASK_POLL_INTERVAL_MS);
     return () => window.clearInterval(timer);
-  }, [dismissedCompleted]);
+  }, [load]);
 
   const handleRunningClick = (task: RunningTaskItem) => {
     router.push(task.href);
   };
 
   const handleCompletedClick = (task: RunningTaskItem) => {
-    const next = new Set(dismissedCompleted);
+    const next = new Set(dismissedRef.current);
     next.add(task.id);
     saveDismissedCompletedTasks(next);
     setDismissedCompleted(next);
@@ -336,6 +362,9 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
       setClearingCache(false);
     }
   };
+
+  /** 全局输入坞：首页/画布/设置页不显示（首页有自己的 composer，画布有 Agent 面板） */
+  const showDock = pathname !== '/' && !pathname.startsWith('/settings') && !/^\/projects\/.+/.test(pathname);
 
   return (
     <div
@@ -462,6 +491,9 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
       >
         {children}
       </main>
+
+      {/* 全局输入坞：跨页面常驻（首页/画布/设置页除外） */}
+      {showDock && <GlobalDock />}
     </div>
   );
 }

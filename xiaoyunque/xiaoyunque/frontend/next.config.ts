@@ -69,6 +69,11 @@ const nextConfig: NextConfig = {
         source: '/api/sandbox/:path*',
         destination: `${backendApiUrl}/api/sandbox/:path*`,
       },
+      // 素材库（资产页持久化）
+      {
+        source: '/api/library/:path*',
+        destination: `${backendApiUrl}/api/library/:path*`,
+      },
     ];
   },
 };

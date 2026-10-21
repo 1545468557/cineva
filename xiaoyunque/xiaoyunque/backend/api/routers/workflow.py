@@ -58,9 +58,14 @@ async def start_project(req: ProjectStartRequest):
     _require_model_fields(req.model_dump())
 
     session_id = uuid.uuid4().hex
+    attachments = [
+        item for item in (req.attachments or [])
+        if isinstance(item, dict) and item.get("path")
+    ]
     meta = {
         "idea": final_idea,
         "user_textbox_input": req.idea,
+        "attachments": attachments,
         "style": req.style or getattr(settings, "STYLE", None) or "realistic",
         "video_ratio": req.video_ratio or "9:16",
         "video_resolution": req.video_resolution or "720P",
@@ -88,6 +93,7 @@ async def start_project(req: ProjectStartRequest):
         "params": {
             "idea": final_idea,
             "file_path": req.file_path,
+            "attachments": attachments,
             "style": req.style,
             "llm_model": meta["llm_model"],
             "vlm_model": meta["vlm_model"],

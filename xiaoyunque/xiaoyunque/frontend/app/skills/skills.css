@@ -1,0 +1,655 @@
+/* 「技能」页样式（深色主题，沿用 --lp-* 变量） */
+
+.xyq-skills {
+    min-height: 100%;
+    padding: 34px 40px 60px;
+    overflow-y: auto;
+    background: #070709;
+}
+
+.xyq-skills-inner {
+    max-width: 1360px;
+    margin: 0 auto;
+}
+
+.xyq-skills-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.xyq-skills-head h1 {
+    color: var(--lp-text-strong);
+    font-family: var(--font-app);
+    font-size: 34px;
+    font-weight: 600;
+    letter-spacing: -0.035em;
+}
+
+.xyq-skills-create {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    height: 34px;
+    padding: 0 15px;
+    border: none;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #ec1f9b, #b5179e);
+    color: #fff;
+    font-family: var(--font-app);
+    font-size: 13px;
+    font-weight: 650;
+    cursor: pointer;
+    transition: filter 160ms ease;
+}
+
+.xyq-skills-create:hover {
+    filter: brightness(1.1);
+}
+
+.xyq-skills-tabs {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid var(--lp-border-subtle);
+}
+
+.xyq-skills-tab {
+    height: 36px;
+    padding: 0 4px;
+    border: none;
+    border-bottom: 2px solid transparent;
+    background: transparent;
+    color: var(--lp-text-muted);
+    font-family: var(--font-app);
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: color 160ms ease, border-color 160ms ease;
+}
+
+.xyq-skills-tab:hover {
+    color: var(--lp-text-strong);
+}
+
+.xyq-skills-tab.is-on {
+    color: var(--lp-text-strong);
+    border-bottom-color: #ffffff;
+}
+
+.xyq-skills-tab-wrap {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.xyq-skills-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 17px;
+    height: 17px;
+    margin-left: 5px;
+    padding: 0 5px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--lp-text-muted);
+    font-size: 10.5px;
+    font-style: normal;
+    font-weight: 700;
+    vertical-align: 1px;
+}
+
+.xyq-skills-tab.is-on .xyq-skills-count {
+    background: rgba(255, 255, 255, 0.2);
+    color: var(--lp-text-strong);
+}
+
+.xyq-skills-sep {
+    width: 1px;
+    height: 16px;
+    background: rgba(255, 255, 255, 0.14);
+    margin: 0 4px 0 2px;
+}
+
+.xyq-skills-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 22px;
+}
+
+.xyq-skills-cats {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    flex-wrap: wrap;
+}
+
+.xyq-skills-cat {
+    height: 30px;
+    padding: 0 13px;
+    border: 1px solid var(--lp-border-subtle);
+    border-radius: 9px;
+    background: rgba(255, 255, 255, 0.035);
+    color: var(--lp-text-default);
+    font-family: var(--font-app);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 160ms ease, border-color 160ms ease, color 160ms ease;
+}
+
+.xyq-skills-cat:hover {
+    border-color: var(--lp-border-strong);
+    color: var(--lp-text-strong);
+}
+
+.xyq-skills-cat.is-on {
+    border-color: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.12);
+    color: var(--lp-text-strong);
+}
+
+.xyq-skills-search {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 220px;
+    height: 34px;
+    padding: 0 12px;
+    border: 1px solid var(--lp-border-subtle);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.035);
+    color: var(--lp-text-muted);
+}
+
+.xyq-skills-search:focus-within {
+    border-color: var(--lp-border-strong);
+}
+
+.xyq-skills-search input {
+    flex: 1;
+    min-width: 0;
+    border: none;
+    background: transparent;
+    color: var(--lp-text-strong);
+    font-family: var(--font-app);
+    font-size: 13px;
+    outline: none;
+}
+
+.xyq-skills-search input::placeholder {
+    color: var(--lp-text-faint, rgba(255, 255, 255, 0.34));
+}
+
+/* ── 技能卡网格 ── */
+.xyq-skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(268px, 1fr));
+    gap: 16px;
+}
+
+.xyq-skill-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid var(--lp-border-subtle);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.03);
+    transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.xyq-skill-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--lp-border-strong);
+    box-shadow: 0 16px 34px rgba(0, 0, 0, 0.42);
+}
+
+.xyq-skill-open {
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.xyq-skill-cover {
+    position: relative;
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background-color: rgba(255, 255, 255, 0.04);
+    background-position: center;
+    background-size: cover;
+}
+
+.xyq-skill-cat,
+.xyq-skill-mine {
+    position: absolute;
+    display: inline-flex;
+    align-items: center;
+    height: 21px;
+    padding: 0 9px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.xyq-skill-cat {
+    left: 9px;
+    top: 9px;
+    background: rgba(0, 0, 0, 0.6);
+    color: #ffffff;
+}
+
+.xyq-skill-cat.is-inline {
+    position: static;
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--lp-text-default);
+}
+
+.xyq-skill-mine {
+    left: 9px;
+    bottom: 9px;
+    background: rgba(236, 31, 155, 0.24);
+    border: 1px solid rgba(236, 31, 155, 0.5);
+    color: #ff9ed6;
+}
+
+.xyq-skill-body {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    padding: 12px 13px 13px;
+}
+
+.xyq-skill-body h3 {
+    overflow: hidden;
+    color: var(--lp-text-strong);
+    font-family: var(--font-app);
+    font-size: 14.5px;
+    font-weight: 600;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.xyq-skill-body p {
+    display: -webkit-box;
+    overflow: hidden;
+    min-height: 34px;
+    color: var(--lp-text-muted);
+    font-size: 12px;
+    line-height: 1.45;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
+.xyq-skill-foot {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 2px;
+}
+
+.xyq-skill-mini {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 28px;
+    border: 1px solid var(--lp-border-subtle);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.035);
+    color: var(--lp-text-muted);
+    cursor: pointer;
+    transition: background 160ms ease, color 160ms ease, border-color 160ms ease;
+}
+
+.xyq-skill-mini:hover {
+    border-color: var(--lp-border-strong);
+    color: var(--lp-text-strong);
+}
+
+.xyq-skill-mini.is-star {
+    color: #f5c451;
+    border-color: rgba(245, 196, 81, 0.4);
+}
+
+.xyq-skill-try {
+    flex: 1;
+    height: 28px;
+    border: 1px solid var(--lp-border-subtle);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--lp-text-strong);
+    font-family: var(--font-app);
+    font-size: 12.5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 160ms ease, color 160ms ease;
+}
+
+.xyq-skill-try:hover {
+    background: #ffffff;
+    color: #101014;
+}
+
+.xyq-skill-del {
+    flex: 1;
+    height: 28px;
+    border: 1px solid rgba(255, 90, 90, 0.35);
+    border-radius: 8px;
+    background: rgba(255, 90, 90, 0.1);
+    color: #ff9a9a;
+    font-family: var(--font-app);
+    font-size: 12.5px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.xyq-skills-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 90px 0;
+    color: var(--lp-text-muted);
+}
+
+.xyq-skills-empty p {
+    color: var(--lp-text-default);
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.xyq-skills-empty span {
+    font-size: 12px;
+}
+
+.xyq-skills-tip {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin-top: 26px;
+    color: var(--lp-text-muted);
+    font-size: 12px;
+}
+
+/* ── 技能详情 / 创建弹层 ── */
+.xyq-skill-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 90;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    background: rgba(4, 4, 6, 0.78);
+    backdrop-filter: blur(6px);
+}
+
+.xyq-skill-modal-box {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(300px, 0.72fr);
+    width: min(940px, 100%);
+    max-height: 84vh;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 18px;
+    background: #101014;
+}
+
+.xyq-skill-modal-box.is-form {
+    display: block;
+    width: min(520px, 100%);
+}
+
+.xyq-skill-modal-cover {
+    min-height: 300px;
+    background-color: #0b0b0e;
+    background-position: center;
+    background-size: cover;
+}
+
+.xyq-skill-modal-info {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+    padding: 22px 20px;
+    border-left: 1px solid var(--lp-border-subtle);
+}
+
+.xyq-skill-modal-info h3 {
+    color: var(--lp-text-strong);
+    font-size: 18px;
+    font-weight: 650;
+}
+
+.xyq-skill-modal-info > p {
+    color: var(--lp-text-muted);
+    font-size: 12.5px;
+    line-height: 1.6;
+}
+
+.xyq-skill-modal-info dl {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.xyq-skill-modal-info dl > div {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+}
+
+.xyq-skill-modal-info dt {
+    flex: 0 0 62px;
+    color: var(--lp-text-muted);
+    font-size: 12px;
+}
+
+.xyq-skill-modal-info dd {
+    color: var(--lp-text-default);
+    font-size: 12.5px;
+    line-height: 1.5;
+    word-break: break-word;
+}
+
+.xyq-skill-modal-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 4px;
+}
+
+.xyq-skill-modal-fav,
+.xyq-skill-modal-share {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    flex: 1;
+    height: 34px;
+    border: 1px solid var(--lp-border-subtle);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--lp-text-default);
+    font-family: var(--font-app);
+    font-size: 12.5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 160ms ease, color 160ms ease, border-color 160ms ease;
+}
+
+.xyq-skill-modal-fav:hover,
+.xyq-skill-modal-share:hover {
+    border-color: var(--lp-border-strong);
+    color: var(--lp-text-strong);
+}
+
+.xyq-skill-modal-fav.is-on {
+    border-color: rgba(245, 196, 81, 0.45);
+    background: rgba(245, 196, 81, 0.12);
+    color: #f5c451;
+}
+
+.xyq-skill-modal-try {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    height: 38px;
+    margin-top: auto;
+    border: none;
+    border-radius: 10px;
+    background: #ffffff;
+    color: #101014;
+    font-family: var(--font-app);
+    font-size: 13.5px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.xyq-skill-modal-close {
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    z-index: 3;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border: 1px solid var(--lp-border-subtle);
+    border-radius: 9px;
+    background: rgba(0, 0, 0, 0.55);
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.xyq-skill-form {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+    padding: 24px 22px 20px;
+}
+
+.xyq-skill-form h3 {
+    color: var(--lp-text-strong);
+    font-size: 17px;
+    font-weight: 650;
+}
+
+.xyq-skill-form label {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.xyq-skill-form label > span {
+    color: var(--lp-text-muted);
+    font-size: 12px;
+}
+
+.xyq-skill-form input,
+.xyq-skill-form select,
+.xyq-skill-form textarea {
+    width: 100%;
+    padding: 9px 11px;
+    border: 1px solid var(--lp-border-subtle);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--lp-text-strong);
+    font-family: var(--font-app);
+    font-size: 13px;
+    outline: none;
+    resize: vertical;
+}
+
+.xyq-skill-form input:focus,
+.xyq-skill-form select:focus,
+.xyq-skill-form textarea:focus {
+    border-color: var(--lp-border-strong);
+}
+
+.xyq-skill-form-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 9px;
+    margin-top: 3px;
+}
+
+.xyq-skill-form-actions button {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    height: 34px;
+    padding: 0 16px;
+    border-radius: 10px;
+    font-family: var(--font-app);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.xyq-skill-form-actions .is-ghost {
+    border: 1px solid var(--lp-border-subtle);
+    background: transparent;
+    color: var(--lp-text-default);
+}
+
+.xyq-skill-form-actions .is-primary {
+    border: none;
+    background: #ffffff;
+    color: #101014;
+}
+
+.xyq-skills-toast {
+    position: fixed;
+    left: 50%;
+    bottom: 30px;
+    z-index: 120;
+    padding: 9px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 999px;
+    background: rgba(20, 20, 26, 0.96);
+    color: #ffffff;
+    font-size: 12.5px;
+    transform: translateX(-50%);
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 900px) {
+    .xyq-skill-modal-box {
+        grid-template-columns: 1fr;
+    }
+
+    .xyq-skill-modal-info {
+        border-left: none;
+        border-top: 1px solid var(--lp-border-subtle);
+    }
+}
+
+@media (max-width: 720px) {
+    .xyq-skills {
+        padding: 22px 18px 48px;
+    }
+
+    .xyq-skills-search {
+        width: 100%;
+    }
+
+    .xyq-skills-grid {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    }
+}

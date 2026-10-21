@@ -1,4 +1,4 @@
-from typing import Any, Dict, Optional
+from typing import Any, Dict, List, Optional
 
 from pydantic import BaseModel
 
@@ -6,6 +6,7 @@ from pydantic import BaseModel
 class ProjectStartRequest(BaseModel):
     idea: str
     file_path: Optional[str] = None
+    attachments: Optional[List[Dict[str, Any]]] = None
     style: Optional[str] = None
     video_ratio: Optional[str] = "9:16"
     video_resolution: Optional[str] = "720P"

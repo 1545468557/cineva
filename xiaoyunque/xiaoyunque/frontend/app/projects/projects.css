@@ -1,0 +1,689 @@
+/* 「我的项目」页样式（深色主题，沿用 --lp-* 变量） */
+
+.xyq-projects {
+    min-height: 100%;
+    padding: 34px 40px 60px;
+    overflow-y: auto;
+    background: #070709;
+}
+
+.xyq-projects-inner {
+    max-width: 1360px;
+    margin: 0 auto;
+}
+
+.xyq-projects-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 22px;
+}
+
+.xyq-projects-head h1 {
+    color: var(--lp-text-strong);
+    font-family: var(--font-app);
+    font-size: 34px;
+    font-weight: 600;
+    letter-spacing: -0.035em;
+}
+
+.xyq-projects-loading {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--lp-text-muted);
+    font-size: 12px;
+}
+
+.xyq-projects-head-right {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: auto;
+}
+
+.xyq-projects-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 17px;
+    height: 17px;
+    margin-left: 5px;
+    padding: 0 5px;
+    border-radius: 999px;
+    background: rgba(255, 120, 120, 0.2);
+    color: #ffb4b4;
+    font-size: 10.5px;
+    font-style: normal;
+    font-weight: 700;
+}
+
+.xyq-projects-folder-select {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    height: 34px;
+    padding: 0 11px;
+    border: 1px solid var(--lp-border-subtle);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.035);
+    color: var(--lp-text-default);
+    font-size: 12.5px;
+}
+
+.xyq-projects-folder-select select {
+    border: none;
+    background: transparent;
+    color: inherit;
+    font-family: var(--font-app);
+    font-size: 12.5px;
+    font-weight: 600;
+    outline: none;
+}
+
+.xyq-projects-folder-select select option {
+    color: #101014;
+}
+
+.xyq-projects-newfolder {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 18px;
+}
+
+.xyq-projects-newfolder input {
+    width: 280px;
+    height: 36px;
+    padding: 0 12px;
+    border: 1px solid var(--lp-border-strong);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--lp-text-strong);
+    font-family: var(--font-app);
+    font-size: 13px;
+    outline: none;
+}
+
+.xyq-projects-newfolder button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    height: 36px;
+    padding: 0 15px;
+    border: 1px solid var(--lp-border-subtle);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--lp-text-default);
+    font-family: var(--font-app);
+    font-size: 12.5px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.xyq-projects-newfolder button.is-primary {
+    border-color: transparent;
+    background: #ffffff;
+    color: #101014;
+}
+
+.xyq-projects-notice {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 18px;
+    padding: 9px 13px;
+    border: 1px solid rgba(90, 140, 255, 0.32);
+    border-radius: 10px;
+    background: rgba(90, 140, 255, 0.12);
+    color: #b9c9ff;
+    font-size: 12px;
+}
+
+.xyq-projects-notice.is-error {
+    border-color: rgba(255, 110, 110, 0.34);
+    background: rgba(255, 110, 110, 0.12);
+    color: #ffb4b4;
+}
+
+.xyq-projects-notice button {
+    display: inline-flex;
+    align-items: center;
+    margin-left: auto;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.xyq-projects-notice button:hover {
+    opacity: 1;
+}
+
+.xyq-projects-trashlist {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.xyq-projects-trashrow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 11px 14px;
+    border: 1px solid var(--lp-border-subtle);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--lp-text-muted);
+    font-size: 12.5px;
+}
+
+.xyq-projects-trashtitle {
+    flex: 0 0 auto;
+    color: var(--lp-text-strong);
+    font-weight: 600;
+}
+
+.xyq-projects-trashtime {
+    flex: 1;
+}
+
+.xyq-projects-trashrow button {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 11px;
+    border: 1px solid var(--lp-border-subtle);
+    border-radius: 8px;
+    background: transparent;
+    color: var(--lp-text-default);
+    font-family: var(--font-app);
+    font-size: 11.5px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.xyq-projects-trashrow button:hover {
+    border-color: var(--lp-border-strong);
+    color: var(--lp-text-strong);
+}
+
+/* ── 筛选 + 操作条 ── */
+.xyq-projects-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+}
+
+.xyq-projects-tabs {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.xyq-projects-tab {
+    height: 34px;
+    padding: 0 16px;
+    border: none;
+    border-radius: 10px;
+    background: transparent;
+    color: var(--lp-text-muted);
+    font-family: var(--font-app);
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 160ms ease, color 160ms ease;
+}
+
+.xyq-projects-tab:hover {
+    color: var(--lp-text-strong);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.xyq-projects-tab.is-on {
+    color: var(--lp-text-strong);
+    background: rgba(255, 255, 255, 0.09);
+}
+
+.xyq-projects-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.xyq-projects-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    height: 34px;
+    padding: 0 13px;
+    border: 1px solid var(--lp-border-subtle);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.035);
+    color: var(--lp-text-default);
+    font-family: var(--font-app);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 160ms ease, border-color 160ms ease, color 160ms ease;
+}
+
+.xyq-projects-action:hover,
+.xyq-projects-action.is-on {
+    border-color: var(--lp-border-strong);
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--lp-text-strong);
+}
+
+.xyq-projects-action.is-icon {
+    width: 34px;
+    padding: 0;
+    justify-content: center;
+}
+
+.xyq-projects-search {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 220px;
+    height: 34px;
+    padding: 0 12px;
+    border: 1px solid var(--lp-border-subtle);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.035);
+    color: var(--lp-text-muted);
+}
+
+.xyq-projects-search:focus-within {
+    border-color: var(--lp-border-strong);
+}
+
+.xyq-projects-search input {
+    flex: 1;
+    min-width: 0;
+    border: none;
+    background: transparent;
+    color: var(--lp-text-strong);
+    font-family: var(--font-app);
+    font-size: 13px;
+    outline: none;
+}
+
+.xyq-projects-search input::placeholder {
+    color: var(--lp-text-faint, rgba(255, 255, 255, 0.34));
+}
+
+/* ── 卡片网格 ── */
+.xyq-projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(272px, 1fr));
+    gap: 18px;
+}
+
+.xyq-project-new {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 264px;
+    border: 1px dashed rgba(255, 255, 255, 0.22);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.022);
+    color: var(--lp-text-muted);
+    font-family: var(--font-app);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: border-color 160ms ease, color 160ms ease, background 160ms ease;
+}
+
+.xyq-project-new:hover {
+    border-color: rgba(255, 255, 255, 0.42);
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--lp-text-strong);
+}
+
+.xyq-project-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid var(--lp-border-subtle);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.03);
+    transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.xyq-project-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--lp-border-strong);
+    box-shadow: 0 18px 38px rgba(0, 0, 0, 0.42);
+}
+
+.xyq-project-open {
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.xyq-project-cover {
+    position: relative;
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    background-color: rgba(255, 255, 255, 0.04);
+    background-position: center;
+    background-size: cover;
+}
+
+.xyq-project-cover::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.05) 40%, rgba(0, 0, 0, 0.55));
+    opacity: 0;
+    transition: opacity 180ms ease;
+}
+
+.xyq-project-card:hover .xyq-project-cover::after {
+    opacity: 1;
+}
+
+.xyq-project-kind,
+.xyq-project-demo,
+.xyq-project-open-badge,
+.xyq-project-ratio {
+    position: absolute;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    height: 22px;
+    padding: 0 9px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+    pointer-events: none;
+}
+
+.xyq-project-open-badge {
+    left: 10px;
+    bottom: 10px;
+    background: rgba(236, 31, 155, 0.85);
+    color: #ffffff;
+    font-weight: 650;
+}
+
+.xyq-project-kind {
+    left: 10px;
+    top: 10px;
+    background: rgba(0, 0, 0, 0.62);
+    color: #ffffff;
+}
+
+.xyq-project-demo {
+    left: 10px;
+    bottom: 10px;
+    background: rgba(255, 255, 255, 0.14);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    color: rgba(255, 255, 255, 0.86);
+    font-weight: 500;
+}
+
+.xyq-project-ratio {
+    right: 10px;
+    top: 10px;
+    background: rgba(0, 0, 0, 0.55);
+    color: rgba(255, 255, 255, 0.82);
+}
+
+.xyq-project-hover {
+    position: absolute;
+    z-index: 2;
+    left: 50%;
+    top: 50%;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    height: 32px;
+    padding: 0 14px;
+    border-radius: 999px;
+    background: #ffffff;
+    color: #101014;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.96);
+    transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.xyq-project-card:hover .xyq-project-hover {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.xyq-project-body {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    padding: 13px 14px 14px;
+}
+
+.xyq-project-title-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.xyq-project-title-row h3 {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    color: var(--lp-text-strong);
+    font-family: var(--font-app);
+    font-size: 15px;
+    font-weight: 600;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.xyq-project-star {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border: none;
+    border-radius: 7px;
+    background: transparent;
+    color: var(--lp-text-faint, rgba(255, 255, 255, 0.34));
+    cursor: pointer;
+    transition: color 160ms ease, background 160ms ease;
+}
+
+.xyq-project-star:hover {
+    background: rgba(255, 255, 255, 0.07);
+    color: var(--lp-text-strong);
+}
+
+.xyq-project-star.is-on {
+    color: #f5c451;
+}
+
+.xyq-project-brief {
+    overflow: hidden;
+    color: var(--lp-text-muted);
+    font-size: 12px;
+    line-height: 1.45;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.xyq-project-stages {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 2px;
+}
+
+.xyq-project-dot {
+    width: 14px;
+    height: 3px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.14);
+}
+
+.xyq-project-dot.is-done {
+    background: #ffffff;
+}
+
+.xyq-project-stage-text {
+    margin-left: 5px;
+    color: var(--lp-text-muted);
+    font-size: 11px;
+}
+
+.xyq-project-foot {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 3px;
+}
+
+.xyq-project-status {
+    display: inline-flex;
+    align-items: center;
+    height: 20px;
+    padding: 0 8px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.xyq-project-status.s-已完成 {
+    background: rgba(52, 199, 123, 0.16);
+    color: #6fe0a1;
+}
+
+.xyq-project-status.s-进行中 {
+    background: rgba(90, 140, 255, 0.18);
+    color: #9ab4ff;
+}
+
+.xyq-project-status.s-草稿 {
+    background: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.xyq-project-time {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-left: auto;
+    color: var(--lp-text-muted);
+    font-size: 11px;
+}
+
+.xyq-project-folder {
+    display: inline-flex;
+    align-items: center;
+    height: 20px;
+    padding: 0 8px;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.07);
+    color: var(--lp-text-muted);
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.xyq-project-move {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+    color: var(--lp-text-muted);
+    font-size: 11px;
+}
+
+.xyq-project-move select {
+    flex: 1;
+    height: 26px;
+    padding: 0 8px;
+    border: 1px solid var(--lp-border-subtle);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--lp-text-default);
+    font-family: var(--font-app);
+    font-size: 11.5px;
+    outline: none;
+}
+
+.xyq-project-move select option {
+    color: #101014;
+}
+
+.xyq-project-del {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    height: 22px;
+    padding: 0 8px;
+    border: 1px solid rgba(255, 90, 90, 0.35);
+    border-radius: 6px;
+    background: rgba(255, 90, 90, 0.1);
+    color: #ff9a9a;
+    font-size: 11px;
+    cursor: pointer;
+}
+
+/* ── 空状态 / 底部说明 ── */
+.xyq-projects-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 90px 0;
+    color: var(--lp-text-muted);
+}
+
+.xyq-projects-empty p {
+    color: var(--lp-text-default);
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.xyq-projects-empty span {
+    font-size: 12px;
+}
+
+.xyq-projects-tip {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin-top: 26px;
+    color: var(--lp-text-muted);
+    font-size: 12px;
+}
+
+@media (max-width: 720px) {
+    .xyq-projects {
+        padding: 22px 18px 48px;
+    }
+
+    .xyq-projects-search {
+        width: 100%;
+    }
+
+    .xyq-projects-grid {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    }
+}

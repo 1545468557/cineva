@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
@@ -139,10 +139,18 @@ export default function WorkflowPanel() {
   const stoppedRef = useRef(false);
   const autoModeRef = useRef(autoMode);
   const pollRef = useRef<Set<string>>(new Set());
+  /** activeStage 的最新值（URL effect 里要做无 session 时的复位判断） */
+  const activeStageRef = useRef<string | null>(activeStage);
 
   useEffect(() => {
     autoModeRef.current = autoMode;
-  }, [autoMode]);
+    activeStageRef.current = activeStage;
+  }, [autoMode, activeStage]);
+
+  useEffect(() => {
+    autoModeRef.current = autoMode;
+    activeStageRef.current = activeStage;
+  }, [autoMode, activeStage]);
 
   const handleAutoModeChange = useCallback((nextAutoMode: boolean) => {
     autoModeRef.current = nextAutoMode;
@@ -170,7 +178,10 @@ export default function WorkflowPanel() {
         }
         if (!pollRef.current.has(key)) return;
         setGlobalStatusMap(status.status || {});
-        const done = Object.keys(status.status || {}).filter(k => ["completed", "session_completed"].includes(status.status[k]));
+        // 只统计真实阶段：status map 里还混着 init / completed 这类门面键，
+        // 对非阶段键去请求 artifact 必然 404。
+        const done = Object.keys(status.status || {}).filter(k =>
+          STAGE_ORDER.includes(k) && ["completed", "session_completed"].includes(status.status[k]));
         const currentStageStatus = status.status?.[stageId] || 'idle';
         const artifacts = status.artifacts || {};
         const currentArtifact = artifacts[stageId];
@@ -264,8 +275,15 @@ export default function WorkflowPanel() {
       // 保存目标阶段，等会话加载完成后再设置
       const targetStage = stageParam && STAGE_ORDER.includes(stageParam) ? stageParam : null;
       handleResumeProject(sessionParam, targetStage);
+    } else if (activeStageRef.current !== null) {
+      // URL 上没有 session（比如点了侧边栏「首页」想回到输入坞）：
+      // 这里补上状态复位，否则会卡在阶段页，看着像首页按钮失灵。
+      setActiveStage(null);
+      setSessionId(null);
     }
-  }, [searchParams]);
+    // 只在 session / stage 真正变化时触发，避免 searchParams 引用变化反复加载
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParams.get('session'), searchParams.get('stage')]);
 
   // 页面加载时从后端获取历史记录
   useEffect(() => {
@@ -525,6 +543,7 @@ export default function WorkflowPanel() {
       const result = await startProject({
         idea: params.idea,
         file_path: params.file_path, // 修复：将上传的文件路径传给后端
+        attachments: params.attachments, // 输入框 “+” 号上传的图片 / 视频 / 剧本 / 音频
         style: params.style,
         video_ratio: params.video_ratio,
         video_resolution: params.video_resolution,
@@ -560,6 +579,7 @@ export default function WorkflowPanel() {
       const inputData: Record<string, any> = {
         idea: params.idea,
         session_id: result.session_id,
+        attachments: params.attachments,
         style: params.style,
         video_ratio: params.video_ratio,
         video_resolution: params.video_resolution,
@@ -948,7 +968,7 @@ export default function WorkflowPanel() {
       // 保存成功后标记为已完成，顶栏显示对勾
       updateStageState(stageId, { status: 'completed' });
 
-      // 如果是分镜阶段保存，刷���第3和第4阶段的 artifact
+      // 如果是分镜阶段保存，刷新第 3 和第 4 阶段的 artifact
       console.log('[handleSaveSelections] stageId:', stageId, 'patch:', patch);
       if (stageId === 'storyboard') {
         // 更新本地 artifact 以清除 is_new 标记
@@ -1117,9 +1137,11 @@ export default function WorkflowPanel() {
       setGlobalStatusMap(status.status || {});
       const newStates = initStageStates();
       const stMap = status.status || {};
-      const allStatusStages = Object.keys(stMap);
+      // status map 里混有 init 之类的门面键，非真实阶段一律跳过，
+      // 否则会去打一个必然 404 的 artifact 接口。
+      const allStatusStages = Object.keys(stMap).filter(k => STAGE_ORDER.includes(k));
       const currentStage = status.current_stage;
-      
+
       // 保存到 state 供顶栏流程图使用
       setCurrentStageFromSession(currentStage || null);
       const completedStages = allStatusStages.filter(k => ["completed", "session_completed"].includes(stMap[k]));

@@ -1,0 +1,729 @@
+/* 「资产」页样式（深色主题，沿用 --lp-* 变量） */
+
+.xyq-assets {
+    min-height: 100%;
+    padding: 34px 40px 60px;
+    overflow-y: auto;
+    background: #070709;
+}
+
+.xyq-assets-inner {
+    max-width: 1360px;
+    margin: 0 auto;
+}
+
+.xyq-assets-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.xyq-assets-head h1 {
+    color: var(--lp-text-strong);
+    font-family: var(--font-app);
+    font-size: 34px;
+    font-weight: 600;
+    letter-spacing: -0.035em;
+}
+
+.xyq-assets-loading {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--lp-text-muted);
+    font-size: 12px;
+}
+
+/* ── 顶部 tab ── */
+.xyq-assets-tabs {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid var(--lp-border-subtle);
+    padding-bottom: 0;
+}
+
+.xyq-assets-tab {
+    height: 36px;
+    padding: 0 14px;
+    border: none;
+    border-bottom: 2px solid transparent;
+    background: transparent;
+    color: var(--lp-text-muted);
+    font-family: var(--font-app);
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: color 160ms ease, border-color 160ms ease;
+}
+
+.xyq-assets-tab:hover {
+    color: var(--lp-text-strong);
+}
+
+.xyq-assets-tab.is-on {
+    color: var(--lp-text-strong);
+    border-bottom-color: #ffffff;
+}
+
+/* ── 分类 chips + 操作 ── */
+.xyq-assets-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 22px;
+}
+
+.xyq-assets-kinds {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    flex-wrap: wrap;
+}
+
+.xyq-assets-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    height: 30px;
+    padding: 0 12px;
+    border: 1px solid var(--lp-border-subtle);
+    border-radius: 9px;
+    background: rgba(255, 255, 255, 0.035);
+    color: var(--lp-text-default);
+    font-family: var(--font-app);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 160ms ease, border-color 160ms ease, color 160ms ease;
+}
+
+.xyq-assets-chip:hover:not(:disabled) {
+    border-color: var(--lp-border-strong);
+    color: var(--lp-text-strong);
+}
+
+.xyq-assets-chip.is-on {
+    border-color: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.12);
+    color: var(--lp-text-strong);
+}
+
+.xyq-assets-chip:disabled {
+    opacity: 0.32;
+    cursor: default;
+}
+
+.xyq-assets-count {
+    color: var(--lp-text-muted);
+    font-size: 11px;
+}
+
+.xyq-assets-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.xyq-assets-head-right {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.xyq-assets-upload {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    height: 34px;
+    padding: 0 14px;
+    border: 1px solid var(--lp-border-subtle);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--lp-text-strong);
+    font-family: var(--font-app);
+    font-size: 12.5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 160ms ease, border-color 160ms ease, color 160ms ease;
+}
+
+.xyq-assets-upload:hover {
+    border-color: var(--lp-border-strong);
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.xyq-assets-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 17px;
+    height: 17px;
+    margin-left: 5px;
+    padding: 0 5px;
+    border-radius: 999px;
+    background: rgba(255, 120, 120, 0.2);
+    color: #ffb4b4;
+    font-size: 10.5px;
+    font-style: normal;
+    font-weight: 700;
+}
+
+.xyq-assets-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    height: 34px;
+    padding: 0 12px;
+    border: 1px solid var(--lp-border-subtle);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.035);
+    color: var(--lp-text-default);
+    font-family: var(--font-app);
+    font-size: 12.5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 160ms ease, border-color 160ms ease, color 160ms ease;
+}
+
+.xyq-assets-action.is-icon {
+    width: 34px;
+    padding: 0;
+}
+
+.xyq-assets-action:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+.xyq-assets-action:hover:not(:disabled),
+.xyq-assets-action.is-on {
+    border-color: var(--lp-border-strong);
+    background: rgba(255, 255, 255, 0.08);
+    color: #f5c451;
+}
+
+.xyq-assets-search {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 220px;
+    height: 34px;
+    padding: 0 12px;
+    border: 1px solid var(--lp-border-subtle);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.035);
+    color: var(--lp-text-muted);
+}
+
+.xyq-assets-search:focus-within {
+    border-color: var(--lp-border-strong);
+}
+
+.xyq-assets-search input {
+    flex: 1;
+    min-width: 0;
+    border: none;
+    background: transparent;
+    color: var(--lp-text-strong);
+    font-family: var(--font-app);
+    font-size: 13px;
+    outline: none;
+}
+
+.xyq-assets-search input::placeholder {
+    color: var(--lp-text-faint, rgba(255, 255, 255, 0.34));
+}
+
+.xyq-assets-file {
+    display: none;
+}
+
+.xyq-assets-notice {
+    margin-bottom: 16px;
+    padding: 9px 13px;
+    border: 1px solid rgba(90, 140, 255, 0.32);
+    border-radius: 10px;
+    background: rgba(90, 140, 255, 0.12);
+    color: #b9c9ff;
+    font-size: 12px;
+}
+
+.xyq-assets-notice.is-error {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-color: rgba(255, 110, 110, 0.34);
+    background: rgba(255, 110, 110, 0.12);
+    color: #ffb4b4;
+}
+
+.xyq-assets-retry {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-left: auto;
+    padding: 3px 10px;
+    border: 1px solid rgba(255, 180, 180, 0.4);
+    border-radius: 8px;
+    background: transparent;
+    color: inherit;
+    font-family: var(--font-app);
+    font-size: 11.5px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.xyq-asset-card.is-trashed {
+    opacity: 0.72;
+}
+
+.xyq-asset-trash-tag {
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+    padding: 2px 7px;
+    border-radius: 6px;
+    background: rgba(255, 110, 110, 0.85);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.xyq-asset-row-actions {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: auto;
+}
+
+.xyq-asset-row-actions button {
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: var(--lp-text-muted);
+    font-family: var(--font-app);
+    font-size: 11.5px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.xyq-asset-row-actions button:hover {
+    color: var(--lp-text-strong);
+}
+
+.xyq-asset-row-actions button.is-danger:hover {
+    color: #ff9a9a;
+}
+
+.xyq-asset-modal-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 14px;
+}
+
+.xyq-asset-modal-actions button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    flex: 1;
+    height: 34px;
+    border: 1px solid var(--lp-border-subtle);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--lp-text-default);
+    font-family: var(--font-app);
+    font-size: 12.5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 160ms ease, border-color 160ms ease, color 160ms ease;
+}
+
+.xyq-asset-modal-actions button:hover {
+    border-color: var(--lp-border-strong);
+    color: var(--lp-text-strong);
+}
+
+.xyq-asset-modal-actions button.is-on {
+    border-color: rgba(245, 196, 81, 0.45);
+    background: rgba(245, 196, 81, 0.12);
+    color: #f5c451;
+}
+
+.xyq-asset-modal-actions button.is-danger {
+    border-color: rgba(255, 110, 110, 0.3);
+    color: #ff9a9a;
+}
+
+.xyq-asset-modal-actions button.is-danger:hover {
+    background: rgba(255, 110, 110, 0.14);
+    color: #ffb4b4;
+}
+
+/* ── 资产网格 ── */
+.xyq-assets-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(196px, 1fr));
+    gap: 16px;
+}
+
+.xyq-assets-grid.is-actors {
+    grid-template-columns: repeat(auto-fill, minmax(172px, 1fr));
+}
+
+.xyq-asset-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid var(--lp-border-subtle);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.03);
+    transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.xyq-asset-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--lp-border-strong);
+    box-shadow: 0 16px 34px rgba(0, 0, 0, 0.42);
+}
+
+.xyq-asset-open {
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.xyq-asset-cover {
+    position: relative;
+    display: block;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background-color: rgba(255, 255, 255, 0.04);
+    background-position: center;
+    background-size: cover;
+}
+
+.xyq-assets-grid.is-actors .xyq-asset-cover {
+    aspect-ratio: 3 / 4;
+}
+
+.xyq-asset-kind,
+.xyq-asset-demo,
+.xyq-asset-real {
+    position: absolute;
+    display: inline-flex;
+    align-items: center;
+    height: 21px;
+    padding: 0 8px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.xyq-asset-kind {
+    left: 8px;
+    top: 8px;
+    background: rgba(0, 0, 0, 0.6);
+    color: #ffffff;
+}
+
+.xyq-asset-demo {
+    left: 8px;
+    bottom: 8px;
+    background: rgba(255, 255, 255, 0.14);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    color: rgba(255, 255, 255, 0.86);
+    font-weight: 500;
+}
+
+.xyq-asset-real {
+    left: 8px;
+    bottom: 8px;
+    background: rgba(52, 199, 123, 0.22);
+    border: 1px solid rgba(52, 199, 123, 0.45);
+    color: #8be9b6;
+}
+
+.xyq-asset-body {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 11px 12px 12px;
+}
+
+.xyq-asset-title-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.xyq-asset-title-row h3 {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    color: var(--lp-text-strong);
+    font-family: var(--font-app);
+    font-size: 13.5px;
+    font-weight: 600;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.xyq-asset-star {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border: none;
+    border-radius: 6px;
+    background: transparent;
+    color: var(--lp-text-faint, rgba(255, 255, 255, 0.34));
+    cursor: pointer;
+}
+
+.xyq-asset-star:hover {
+    background: rgba(255, 255, 255, 0.07);
+    color: var(--lp-text-strong);
+}
+
+.xyq-asset-star.is-on {
+    color: #f5c451;
+}
+
+.xyq-asset-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.xyq-asset-tags span {
+    display: inline-flex;
+    align-items: center;
+    height: 19px;
+    padding: 0 7px;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.07);
+    color: var(--lp-text-muted);
+    font-size: 11px;
+}
+
+.xyq-asset-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    color: var(--lp-text-muted);
+    font-size: 11px;
+}
+
+.xyq-asset-model {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* ── 空状态（生成 / 上传 / 批量上传）── */
+.xyq-assets-blank {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    padding: 66px 0 80px;
+}
+
+.xyq-assets-blank-actions {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(180px, 210px));
+    gap: 14px;
+}
+
+.xyq-assets-blank-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+    padding: 18px 16px;
+    border: 1px solid var(--lp-border-subtle);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--lp-text-muted);
+    text-align: left;
+    cursor: pointer;
+    transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+}
+
+.xyq-assets-blank-btn:hover {
+    transform: translateY(-2px);
+    border-color: var(--lp-border-strong);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.xyq-assets-blank-btn b {
+    color: var(--lp-text-strong);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.xyq-assets-blank-btn span {
+    font-size: 12px;
+}
+
+.xyq-assets-blank-btn.is-primary {
+    border-color: rgba(236, 31, 155, 0.42);
+    background: linear-gradient(150deg, rgba(236, 31, 155, 0.18), rgba(255, 255, 255, 0.02) 70%);
+}
+
+.xyq-assets-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 90px 0;
+    color: var(--lp-text-muted);
+}
+
+.xyq-assets-empty p {
+    color: var(--lp-text-default);
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.xyq-assets-empty span {
+    font-size: 12px;
+}
+
+.xyq-assets-tip {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin-top: 26px;
+    color: var(--lp-text-muted);
+    font-size: 12px;
+}
+
+/* ── 预览弹层 ── */
+.xyq-asset-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 80;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    background: rgba(4, 4, 6, 0.78);
+    backdrop-filter: blur(6px);
+}
+
+.xyq-asset-modal-box {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(240px, 0.6fr);
+    gap: 0;
+    width: min(1080px, 100%);
+    max-height: 84vh;
+    overflow: hidden;
+    border: 1px solid var(--lp-border-strong, rgba(255, 255, 255, 0.16));
+    border-radius: 18px;
+    background: #101014;
+}
+
+.xyq-asset-modal-media {
+    min-height: 380px;
+    background-color: #0b0b0e;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.xyq-asset-modal-info {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 22px 20px;
+    border-left: 1px solid var(--lp-border-subtle);
+}
+
+.xyq-asset-modal-info h3 {
+    color: var(--lp-text-strong);
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.xyq-asset-modal-info dl {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    margin-top: 4px;
+}
+
+.xyq-asset-modal-info dl > div {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+}
+
+.xyq-asset-modal-info dt {
+    width: 44px;
+    flex: 0 0 44px;
+    color: var(--lp-text-muted);
+    font-size: 12px;
+}
+
+.xyq-asset-modal-info dd {
+    color: var(--lp-text-default);
+    font-size: 12.5px;
+    word-break: break-all;
+}
+
+.xyq-asset-modal-close {
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border: 1px solid var(--lp-border-subtle);
+    border-radius: 9px;
+    background: rgba(0, 0, 0, 0.5);
+    color: #ffffff;
+    cursor: pointer;
+}
+
+@media (max-width: 900px) {
+    .xyq-asset-modal-box {
+        grid-template-columns: 1fr;
+    }
+
+    .xyq-asset-modal-info {
+        border-left: none;
+        border-top: 1px solid var(--lp-border-subtle);
+    }
+}
+
+@media (max-width: 720px) {
+    .xyq-assets {
+        padding: 22px 18px 48px;
+    }
+
+    .xyq-assets-search {
+        width: 100%;
+    }
+
+    .xyq-assets-blank-actions {
+        grid-template-columns: 1fr;
+    }
+}

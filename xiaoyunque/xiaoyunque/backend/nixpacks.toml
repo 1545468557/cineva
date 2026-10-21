@@ -1,0 +1,12 @@
+# Railway / Nixpacks 构建配置
+# Railway 读这个文件决定装依赖和起服务的方式。
+# ffmpeg 由 nixPkgs 提供 —— 视频合成与截帧必需，没有它会 500。
+
+[phases.setup]
+nixPkgs = ["ffmpeg", "curl"]
+
+[phases.install]
+cmds = ["pip install --no-cache-dir -r requirements.txt"]
+
+[start]
+cmd = "python api_server.py"

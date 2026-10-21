@@ -159,11 +159,12 @@ function setValue(config: ConfigTree, path: string, value: any): ConfigTree {
 function formatConfigPath(path: string) {
   if (!path) return 'backend/config.yaml';
   const normalized = path.replace(/\\/g, '/');
-  const marker = '/xiaoyunque/xiaoyunque/';
-  const markerIndex = normalized.lastIndexOf(marker);
-  if (markerIndex >= 0) return normalized.slice(markerIndex + marker.length);
+  // 只显示 backend/ 之后的部分；不依赖上层目录名，避免把项目名带进界面
   const backendIndex = normalized.lastIndexOf('/backend/config.yaml');
   if (backendIndex >= 0) return normalized.slice(backendIndex + 1);
+  const marker = '/backend/';
+  const markerIndex = normalized.lastIndexOf(marker);
+  if (markerIndex >= 0) return normalized.slice(markerIndex + marker.length);
   return normalized;
 }
 

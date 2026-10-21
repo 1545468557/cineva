@@ -215,20 +215,49 @@ def _normalize_log_level(value: Any, legacy_debug: Any = None) -> str:
     return normalized if normalized in allowed else DEFAULT_CONFIG["server"]["log_level"]
 
 
+# 环境变量 -> 配置路径。用于容器/云部署，本地不设变量时完全不受影响。
+_ENV_OVERRIDES = (
+    ("HOST", "server.host", str),
+    ("PORT", "server.port", int),
+    ("LOG_LEVEL", "server.log_level", str),
+    ("OPENAI_API_KEY", "api_providers.openai.api_key", str),
+    ("OPENAI_BASE_URL", "api_providers.openai.base_url", str),
+    ("GEMINI_API_KEY", "api_providers.gemini.api_key", str),
+    ("DEEPSEEK_API_KEY", "api_providers.deepseek.api_key", str),
+    ("DASHSCOPE_API_KEY", "api_providers.dashscope.api_key", str),
+    ("ARK_API_KEY", "api_providers.ark.api_key", str),
+    ("KLING_ACCESS_KEY", "api_providers.kling.access_key", str),
+    ("KLING_SECRET_KEY", "api_providers.kling.secret_key", str),
+)
+
+
+def _apply_env_overrides(data: Dict[str, Any]) -> Dict[str, Any]:
+    """把环境变量叠加到配置上（部署用）。未设置的环境变量一律跳过。"""
+    for env_name, path, cast in _ENV_OVERRIDES:
+        raw = os.environ.get(env_name)
+        if raw is None or raw == "":
+            continue
+        try:
+            _set(data, path, cast(raw))
+        except (TypeError, ValueError):
+            logger.warning("Ignoring invalid value for env %s", env_name)
+    return data
+
+
 def load_config() -> Dict[str, Any]:
     if not CONFIG_PATH.exists():
         source = CONFIG_EXAMPLE_PATH if CONFIG_EXAMPLE_PATH.exists() else None
         if source:
             with source.open("r", encoding="utf-8") as f:
                 loaded = yaml.safe_load(f) or {}
-            return _coerce_config(loaded)
-        return copy.deepcopy(DEFAULT_CONFIG)
+            return _apply_env_overrides(_coerce_config(loaded))
+        return _apply_env_overrides(copy.deepcopy(DEFAULT_CONFIG))
 
     with CONFIG_PATH.open("r", encoding="utf-8") as f:
         loaded = yaml.safe_load(f) or {}
     if not isinstance(loaded, dict):
         raise ValueError("backend/config.yaml must contain a YAML mapping.")
-    return _coerce_config(loaded)
+    return _apply_env_overrides(_coerce_config(loaded))
 
 
 def save_config(values: Dict[str, Any]) -> Dict[str, Any]:
